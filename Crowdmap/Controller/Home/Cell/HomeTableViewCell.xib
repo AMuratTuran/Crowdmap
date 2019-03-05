@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" rowHeight="86" id="2CL-MC-uMd" customClass="HomeTableViewCell" customModule="Crowdmap" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2CL-MC-uMd" id="4zz-tR-3ma">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Library" translatesAutoresizingMaskIntoConstraints="NO" id="P33-XP-A6R">
+                        <rect key="frame" x="10" y="5" width="355" height="70.5"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suna Kıraç Library" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="951-Eh-IMh">
+                        <rect key="frame" x="10" y="22" width="355" height="42"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="P33-XP-A6R" firstAttribute="top" secondItem="4zz-tR-3ma" secondAttribute="top" constant="5" id="c0C-HF-p0g"/>
+                    <constraint firstItem="951-Eh-IMh" firstAttribute="leading" secondItem="4zz-tR-3ma" secondAttribute="leading" constant="10" id="eTP-27-7sS"/>
+                    <constraint firstAttribute="trailing" secondItem="P33-XP-A6R" secondAttribute="trailing" constant="10" id="es2-bD-wZP"/>
+                    <constraint firstItem="951-Eh-IMh" firstAttribute="centerY" secondItem="4zz-tR-3ma" secondAttribute="centerY" id="hl7-fV-XSY"/>
+                    <constraint firstAttribute="bottom" secondItem="P33-XP-A6R" secondAttribute="bottom" constant="10" id="i0w-04-wqk"/>
+                    <constraint firstAttribute="trailing" secondItem="951-Eh-IMh" secondAttribute="trailing" constant="10" id="kzD-DY-Kl5"/>
+                    <constraint firstItem="P33-XP-A6R" firstAttribute="leading" secondItem="4zz-tR-3ma" secondAttribute="leading" constant="10" id="srq-jK-zbf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="locationImageView" destination="P33-XP-A6R" id="HMq-8V-ruM"/>
+                <outlet property="locationNameLabel" destination="951-Eh-IMh" id="552-4y-UTZ"/>
+            </connections>
+            <point key="canvasLocation" x="-962.39999999999998" y="18.890554722638683"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Library" width="480" height="234"/>
+    </resources>
+</document>
