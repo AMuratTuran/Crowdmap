@@ -10,7 +10,6 @@ import UIKit
 import FirebaseAuth
 import OnboardKit
 import GoogleSignIn
-import  NYAlertViewController
 
 class SingUpViewController: BaseViewController {
     
@@ -77,7 +76,7 @@ class SingUpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         signupButton.layer.cornerRadius = 10
-        
+        self.hideKeyboardWhenTappedAround()
         configureUI()
         //        onboardingPages = onboardController.onboardingPages
         //

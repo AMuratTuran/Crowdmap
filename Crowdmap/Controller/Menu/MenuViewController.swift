@@ -29,6 +29,7 @@ class MenuViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var topView: UIView!
     
     var modulesArray: [[Module]] = []
     
@@ -40,19 +41,22 @@ class MenuViewController: BaseViewController {
     }
     
     func configureTableView(){
+        topView.backgroundColor = UIColor(hexString: "#131d21")
         tableView.delegate = self
         tableView.dataSource = self
         let nib = UINib(nibName: "MenuTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "MenuTableViewCell")
         tableView.tableFooterView = UIView()
         tableView.tableFooterView?.tintColor = UIColor.black
+        tableView.backgroundColor = .clear
+        tableView.separatorColor = .clear
+        
         
     }
     
     func prepareModules(){
-        modulesArray.append([Module(type: .settings, icon: "maintenance"), Module(type: .about, icon: "about")])
+        modulesArray.append([Module(type: .settings, icon: "settings"), Module(type: .about, icon: "about")])
         modulesArray.append([Module(type: .logout, icon: "exit")])
-        print(modulesArray)
         tableView.reloadData()
         
     }
@@ -132,6 +136,15 @@ extension MenuViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.pushNewVC(T: modulesArray[indexPath.section][indexPath.row].type)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width , height: 20))
+        
+        headerView.backgroundColor = UIColor.clear
+        
+        return headerView
     }
     
 }

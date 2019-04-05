@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import RAMAnimatedTabBarController
 
 class StartViewController: UIViewController {
     
@@ -21,10 +22,11 @@ class StartViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let user = Auth.auth().currentUser
+         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         if user != nil && (user?.isEmailVerified)! {
-            self.performSegue(withIdentifier: "alreadyLoggedIn", sender: nil)
+            let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
+            self.present(nextVC, animated: true, completion: nil)
         }else if user?.isEmailVerified == false {
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let nextVC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             self.present(nextVC, animated: true, completion: nil)
         }

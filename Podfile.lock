@@ -1,5 +1,11 @@
 PODS:
   - Alamofire (4.8.1)
+  - AMScrollingNavbar (5.2.0)
+  - Bartinter (0.0.4)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - expanding-collection (3.0.0)
   - Firebase (5.17.0):
     - Firebase/Core (= 5.17.0)
   - Firebase/Auth (5.17.0):
@@ -39,6 +45,7 @@ PODS:
     - FirebaseCore (~> 5.3)
     - GoogleUtilities/Environment (~> 5.3)
     - GoogleUtilities/UserDefaults (~> 5.3)
+  - FoldingCell (4.0.3)
   - GoogleAppMeasurement (5.6.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -76,33 +83,55 @@ PODS:
   - GoogleUtilities/UserDefaults (5.3.7):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
-  - IQKeyboardManagerSwift (6.2.0)
+  - GTProgressBar (0.3.2)
   - MBProgressHUD (1.1.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - NYAlertViewController (1.3.0)
   - OnboardKit (1.3.0)
+  - OpenSans (1.0.3)
+  - Pulsator (0.5.3)
+  - QuickLayout (2.1.1)
+  - RAMAnimatedTabBarController (4.0.1)
+  - Spring (1.0.6)
+  - SVProgressHUD (2.2.5)
+  - SwiftEntryKit (0.8.8):
+    - QuickLayout (= 2.1.1)
   - SwiftyJSON (4.2.0)
+  - UICircularProgressRing (6.0.1)
 
 DEPENDENCIES:
   - Alamofire
+  - AMScrollingNavbar
+  - Bartinter
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
+  - expanding-collection
   - Firebase
   - Firebase/Auth
   - Firebase/Core
   - Firebase/DynamicLinks
+  - FoldingCell
   - GoogleSignIn
-  - IQKeyboardManagerSwift
+  - GTProgressBar
   - MBProgressHUD (~> 1.0)
-  - NYAlertViewController
   - OnboardKit
+  - OpenSans
+  - Pulsator
+  - RAMAnimatedTabBarController
+  - Spring (from `https://github.com/MengTo/Spring.git`)
+  - SVProgressHUD
+  - SwiftEntryKit
   - SwiftyJSON
+  - UICircularProgressRing
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - AMScrollingNavbar
+    - Bartinter
+    - expanding-collection
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -111,20 +140,45 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseDynamicLinks
     - FirebaseInstanceID
+    - FoldingCell
     - GoogleAppMeasurement
     - GoogleSignIn
     - GoogleToolboxForMac
     - GoogleUtilities
     - GTMSessionFetcher
-    - IQKeyboardManagerSwift
+    - GTProgressBar
     - MBProgressHUD
     - nanopb
-    - NYAlertViewController
     - OnboardKit
+    - OpenSans
+    - Pulsator
+    - QuickLayout
+    - RAMAnimatedTabBarController
+    - SVProgressHUD
+    - SwiftEntryKit
     - SwiftyJSON
+    - UICircularProgressRing
+
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+  Spring:
+    :git: https://github.com/MengTo/Spring.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
+    :git: https://github.com/ViccAlexander/Chameleon.git
+  Spring:
+    :commit: fafd0b2e8d4d46405bd86fa7ba84bb7f73a20b13
+    :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  AMScrollingNavbar: 9df3652d6757f1a24646d8e90cb458591d8b1a6a
+  Bartinter: cfc2ebf2fb8560a7d878dcbdc7d3c667c79090c9
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  expanding-collection: 008241debdc263d25e230d6a0824a558a8f2755c
   Firebase: 59d557e064217fab6a03ff00baa73c06e73832e6
   FirebaseAnalytics: 75e4bbc6417d190cc98ec1f17c41a4fad4c2c976
   FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
@@ -133,18 +187,26 @@ SPEC CHECKSUMS:
   FirebaseCore: c0c4befb82374d6aef64d800e569f47625352edc
   FirebaseDynamicLinks: 83a0071c95ad715bc324fcb8f51028d5b6a58af0
   FirebaseInstanceID: 4522aad88f69297622062c0e9ffccdee3dd9b151
+  FoldingCell: 617197a8ec9feff741419361e756eea71d60559f
   GoogleAppMeasurement: 008e04ecd8efedd97a693aea8634aefe220bd26e
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  GTProgressBar: 3aa9731127b3ef193935d450928c3bd0f46bb1c4
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  NYAlertViewController: b93f82e2c1fc6d5e9485512ddbe7b481f463a074
   OnboardKit: 9f985b1e2012cebbbbc85d52502fa9e09f3b89b4
+  OpenSans: 33078846463eae780aa5f82986b51cce085f970d
+  Pulsator: d58707c6827ec862cd89fd727424866795dabd24
+  QuickLayout: 9af2b7fd89a6552828f51a5aba28d1bcdb8b340c
+  RAMAnimatedTabBarController: 677d6f7ec7e88b1089486f4db49b0a5067e8ad1c
+  Spring: 3d113f14575ef79aec9c5f906dfa4f5001c03254
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftEntryKit: c50f25a14772713ded1591c852d1c1dc74c95b9e
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  UICircularProgressRing: c731c427f5304de4548f3563710ac610b7c3dd2e
 
-PODFILE CHECKSUM: eff808098db07c3c1c2f8830c82ef630c15773b8
+PODFILE CHECKSUM: 83453cbd42104c6918bf5efee4fdbad9bbf59f05
 
 COCOAPODS: 1.6.1

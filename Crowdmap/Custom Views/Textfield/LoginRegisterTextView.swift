@@ -31,7 +31,13 @@ class LoginRegisterTextField: UITextField, UITextViewDelegate{
             let lineHeight = self.frame.size.height - 1
             lineView = UIView(frame: CGRect(x: 0, y: lineHeight, width: self.frame.size.width, height: 2))
             lineView.backgroundColor = UIColor.kuRadarTabBar.withAlphaComponent(0.5)
-            //        self.attributedPlaceholder = NSAttributedString(string: "   Enter email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.9)])
+            switch self.tag{
+            case 1: self.attributedPlaceholder = NSAttributedString(string: "   Enter email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.9)])
+            self.textContentType = .emailAddress
+            case 2: self.attributedPlaceholder = NSAttributedString(string: "   Enter password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.9)])
+            case 3: self.attributedPlaceholder = NSAttributedString(string: "   Enter name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.9)])
+            default: self.attributedPlaceholder = NSAttributedString(string: "   ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.9)])
+            }
             self.backgroundColor = UIColor.clear
             self.borderStyle = .none
             if imageName != nil {
@@ -41,6 +47,7 @@ class LoginRegisterTextField: UITextField, UITextViewDelegate{
                 self.leftView = customView
             }
             translatesAutoresizingMaskIntoConstraints = false
+            self.autocorrectionType = .yes
             self.addSubview(lineView)
         }
     }

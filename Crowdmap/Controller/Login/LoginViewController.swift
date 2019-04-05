@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import GoogleSignIn
 import MBProgressHUD
-
+import RAMAnimatedTabBarController
 class LoginViewController: BaseViewController , UITextFieldDelegate, GIDSignInUIDelegate {
     
     @IBOutlet weak var emailTextField: LoginRegisterTextField!
@@ -21,6 +21,7 @@ class LoginViewController: BaseViewController , UITextFieldDelegate, GIDSignInUI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         loginButton.layer.cornerRadius = 10
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -39,7 +40,7 @@ class LoginViewController: BaseViewController , UITextFieldDelegate, GIDSignInUI
             if error == nil{
                 if (Auth.auth().currentUser?.isEmailVerified)! {
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
+                    let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController") as! RAMAnimatedTabBarController
                     self.present(nextVC, animated: true, completion: nil)
                     self.hideLoadingHUD()
                 }else {
@@ -63,4 +64,18 @@ class LoginViewController: BaseViewController , UITextFieldDelegate, GIDSignInUI
         }
     }
     
+}
+
+
+// Put this piece of code anywhere you like
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

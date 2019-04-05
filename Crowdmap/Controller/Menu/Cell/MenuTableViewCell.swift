@@ -17,6 +17,7 @@ class MenuTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        backgroundColor = .clear
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,9 +34,9 @@ class MenuTableViewCell: UITableViewCell {
         self.menuTextLabel.isEnabled = true
         self.menuTextLabel.isUserInteractionEnabled = true
         if T.type == .logout {
-            menuTextLabel.textColor = UIColor.red
+            menuTextLabel.textColor = UIColor.locationCrowdedColor
         } else {
-            menuTextLabel.textColor = .black
+            menuTextLabel.textColor = .white
         }
     }
     
