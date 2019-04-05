@@ -1,0 +1,6 @@
+framework module Pods_Crowdmap {
+  umbrella header "Pods-Crowdmap-umbrella.h"
+
+  export *
+  module * { export * }
+}
