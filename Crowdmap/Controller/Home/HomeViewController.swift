@@ -186,7 +186,7 @@ extension HomeViewController: UITableViewDataSource,UITableViewDelegate {
             tableView.endUpdates()
         }, completion: nil)
         
-        NotificationManager().scheduleNotification(notificationType: "Notification Test")
+//        NotificationManager().scheduleNotification(notificationType: "Notification Test")
     }
 }
 

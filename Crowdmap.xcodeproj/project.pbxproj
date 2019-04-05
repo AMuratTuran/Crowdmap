@@ -54,7 +54,6 @@
 		F1C66B0D22464DE400D7FEFD /* buttonWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C66B0C22464DE400D7FEFD /* buttonWithImage.swift */; };
 		F1C66B1122469B8200D7FEFD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C66B1022469B8200D7FEFD /* DetailViewController.swift */; };
 		F1C66B1322469BA500D7FEFD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C66B1222469BA500D7FEFD /* MapViewController.swift */; };
-		F1C66B152248B2E700D7FEFD /* CustomSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C66B142248B2E700D7FEFD /* CustomSegmentControl.swift */; };
 		F1C66B1A2249159F00D7FEFD /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C66B182249159F00D7FEFD /* DetailsTableViewCell.swift */; };
 		F1C66B1B2249159F00D7FEFD /* DetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1C66B192249159F00D7FEFD /* DetailsTableViewCell.xib */; };
 		F1C66B1E224915B300D7FEFD /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C66B1C224915B300D7FEFD /* MapTableViewCell.swift */; };
@@ -138,7 +137,6 @@
 		F1C66B0C22464DE400D7FEFD /* buttonWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = buttonWithImage.swift; sourceTree = "<group>"; };
 		F1C66B1022469B8200D7FEFD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F1C66B1222469BA500D7FEFD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		F1C66B142248B2E700D7FEFD /* CustomSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentControl.swift; sourceTree = "<group>"; };
 		F1C66B182249159F00D7FEFD /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		F1C66B192249159F00D7FEFD /* DetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsTableViewCell.xib; sourceTree = "<group>"; };
 		F1C66B1C224915B300D7FEFD /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
@@ -287,7 +285,6 @@
 		F1925CF6222EBF1000150957 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				F1C66B162248BE7700D7FEFD /* SegmentedControl */,
 				F1925D02222EC1F900150957 /* Buttons */,
 				F1925D01222EC1EF00150957 /* Textfield */,
 			);
@@ -487,14 +484,6 @@
 				F1B5C0B622564A6B0070E1BA /* NotificationManager.swift */,
 			);
 			path = Notification;
-			sourceTree = "<group>";
-		};
-		F1C66B162248BE7700D7FEFD /* SegmentedControl */ = {
-			isa = PBXGroup;
-			children = (
-				F1C66B142248B2E700D7FEFD /* CustomSegmentControl.swift */,
-			);
-			path = SegmentedControl;
 			sourceTree = "<group>";
 		};
 		F1C66B172249152D00D7FEFD /* Cells */ = {
@@ -820,7 +809,6 @@
 				F1925D04222EC23D00150957 /* LoginRegisterTextView.swift in Sources */,
 				F198DDFB2254F7DA00D34A5A /* Enums.swift in Sources */,
 				F1B188EB223001A30023286D /* Location.swift in Sources */,
-				F1C66B152248B2E700D7FEFD /* CustomSegmentControl.swift in Sources */,
 				F1925D06222EC27300150957 /* LoginRegisterButton.swift in Sources */,
 				F1B5C0B722564A6B0070E1BA /* NotificationManager.swift in Sources */,
 				F1925D1D222F02AF00150957 /* MenuViewController.swift in Sources */,

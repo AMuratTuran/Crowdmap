@@ -54,18 +54,8 @@
                                     <constraint firstAttribute="bottom" secondItem="iqp-NB-1cK" secondAttribute="bottom" constant="15" id="szP-sC-DTH"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MtG-Py-xEH" customClass="CustomSegmentControl" customModule="Crowdmap" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="100" width="375" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="mqL-qS-jg6"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="segmentChanged:" destination="rBh-Us-DiC" eventType="valueChanged" id="vIO-yh-9Ln"/>
-                                </connections>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="34q-Js-Tee">
-                                <rect key="frame" x="0.0" y="140" width="375" height="527"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -74,14 +64,11 @@
                         <constraints>
                             <constraint firstItem="vNg-DZ-QpS" firstAttribute="trailing" secondItem="B1S-T1-FPf" secondAttribute="trailing" id="6AD-tc-Ft4"/>
                             <constraint firstItem="34q-Js-Tee" firstAttribute="leading" secondItem="B1S-T1-FPf" secondAttribute="leading" id="9Zv-jT-67F"/>
-                            <constraint firstItem="MtG-Py-xEH" firstAttribute="top" secondItem="vNg-DZ-QpS" secondAttribute="bottom" id="L3q-0Y-xgG"/>
-                            <constraint firstItem="MtG-Py-xEH" firstAttribute="leading" secondItem="B1S-T1-FPf" secondAttribute="leading" id="Nod-Oc-7F6"/>
                             <constraint firstItem="vNg-DZ-QpS" firstAttribute="top" secondItem="1zh-g9-cBc" secondAttribute="top" id="TLp-oA-4cQ"/>
-                            <constraint firstItem="34q-Js-Tee" firstAttribute="top" secondItem="MtG-Py-xEH" secondAttribute="bottom" id="TTJ-Tw-rVL"/>
                             <constraint firstItem="B1S-T1-FPf" firstAttribute="trailing" secondItem="34q-Js-Tee" secondAttribute="trailing" id="Tfk-yx-oZC"/>
                             <constraint firstItem="vNg-DZ-QpS" firstAttribute="leading" secondItem="B1S-T1-FPf" secondAttribute="leading" id="fdm-y3-6L9"/>
+                            <constraint firstItem="34q-Js-Tee" firstAttribute="top" secondItem="vNg-DZ-QpS" secondAttribute="bottom" id="sEC-9U-dJb"/>
                             <constraint firstItem="B1S-T1-FPf" firstAttribute="bottom" secondItem="34q-Js-Tee" secondAttribute="bottom" id="sh2-TN-cim"/>
-                            <constraint firstItem="MtG-Py-xEH" firstAttribute="trailing" secondItem="B1S-T1-FPf" secondAttribute="trailing" id="vZH-JO-Cnp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B1S-T1-FPf"/>
                     </view>
@@ -91,7 +78,6 @@
                     <connections>
                         <outlet property="detailTableView" destination="34q-Js-Tee" id="GIj-ZD-3xY"/>
                         <outlet property="nameLabel" destination="3JN-wT-DgW" id="6nJ-b6-gE9"/>
-                        <outlet property="segmentControl" destination="MtG-Py-xEH" id="sWz-SJ-FXn"/>
                         <outlet property="topBar" destination="vNg-DZ-QpS" id="Z7I-4k-KdU"/>
                     </connections>
                 </viewController>
