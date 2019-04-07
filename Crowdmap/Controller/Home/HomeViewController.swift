@@ -63,9 +63,9 @@ class HomeViewController: BaseViewController {
         }
     }
     func calculateDistance(){
-//        let loc = CLLocation(latitude: coordinates!.latitude, longitude: coordinates!.longitude)
-//        let distanceInMeters = loc.distance(from: LocationType.foodCourt.coordinates)
-//        print(distanceInMeters)
+        //        let loc = CLLocation(latitude: coordinates!.latitude, longitude: coordinates!.longitude)
+        //        let distanceInMeters = loc.distance(from: LocationType.foodCourt.coordinates)
+        //        print(distanceInMeters)
     }
     private func  configureRefreshControl(){
         refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
@@ -124,17 +124,17 @@ extension HomeViewController: UITableViewDataSource,UITableViewDelegate {
         cell.backgroundColor = .clear
         if values[indexPath.row] == 0{
             DispatchQueue.main.async {
-                cell.progressRing.startProgress(to: self.progressBarValues[indexPath.row] , duration: 1)
+                cell.progressRing.startProgress(to: self.locations[indexPath.row].ringValue!, duration: 1)
             }
             values[indexPath.row] = progressBarValues[indexPath.row]
         }else{
-            cell.progressRing.startProgress(to: self.progressBarValues[indexPath.row] , duration: 0)
+            cell.progressRing.startProgress(to: self.locations[indexPath.row].ringValue!, duration: 0)
         }
         
         if  cell.progressRing.value != progressBarValues[indexPath.row] && indexPath.row > 4 {
-            cell.progressRing.startProgress(to: self.progressBarValues[indexPath.row] , duration: 0)
+            cell.progressRing.startProgress(to: self.locations[indexPath.row].ringValue! , duration: 0)
         }
-        cell.detailProgressRing.value = self.progressBarValues[indexPath.row]
+        cell.detailProgressRing.value = self.locations[indexPath.row].ringValue!
         
         
         
@@ -146,17 +146,16 @@ extension HomeViewController: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingTableViewCell", for: indexPath) as! FoldingTableViewCell
-    var currentLocation = locations[indexPath.row]
-    
-    displayCell(currentLocation: &currentLocation, cell: cell, indexPath: indexPath)
-    let durations: [TimeInterval] = [0.1, 0.1, 0.1]
-    cell.durationsForExpandedState = durations
-    cell.durationsForCollapsedState = durations
-    
-   
-    return cell
-}
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingTableViewCell", for: indexPath) as! FoldingTableViewCell
+        var currentLocation = locations[indexPath.row]
+        
+        displayCell(currentLocation: &currentLocation, cell: cell, indexPath: indexPath)
+        
+        let durations: [TimeInterval] = [0.1, 0.1, 0.1]
+        cell.durationsForExpandedState = durations
+        cell.durationsForCollapsedState = durations
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeights[indexPath.row]
@@ -186,7 +185,7 @@ extension HomeViewController: UITableViewDataSource,UITableViewDelegate {
             tableView.endUpdates()
         }, completion: nil)
         
-//        NotificationManager().scheduleNotification(notificationType: "Notification Test")
+        //        NotificationManager().scheduleNotification(notificationType: "Notification Test")
     }
 }
 
