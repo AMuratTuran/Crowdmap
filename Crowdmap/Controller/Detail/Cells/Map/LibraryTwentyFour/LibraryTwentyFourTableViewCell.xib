@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="LibraryTwentyFourTableViewCell" customModule="Crowdmap" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="415" height="461"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="415" height="460.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kat_plani_2_TR_b" translatesAutoresizingMaskIntoConstraints="NO" id="vUz-dG-hN3">
+                        <rect key="frame" x="0.0" y="0.0" width="415" height="460.5"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hh8-Jv-kt9" userLabel="HaloFront">
+                        <rect key="frame" x="70" y="151" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="Kt3-MQ-tdw"/>
+                            <constraint firstAttribute="height" constant="50" id="wV5-fY-0it"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZR-A6-AOY" userLabel="HaloBack">
+                        <rect key="frame" x="70" y="281" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="gBs-0k-ANL"/>
+                            <constraint firstAttribute="width" constant="50" id="sIC-Pb-bF9"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDM-VL-V2S" userLabel="HaloMiddle">
+                        <rect key="frame" x="70" y="331" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="cAt-qE-mYU"/>
+                            <constraint firstAttribute="height" constant="50" id="grx-m0-Rqw"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hh8-Jv-kt9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="140" id="8ay-8x-VG1"/>
+                    <constraint firstAttribute="bottom" secondItem="vUz-dG-hN3" secondAttribute="bottom" id="9cp-nC-hpM"/>
+                    <constraint firstAttribute="trailing" secondItem="vUz-dG-hN3" secondAttribute="trailing" id="BDn-5Q-sqB"/>
+                    <constraint firstItem="hh8-Jv-kt9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="50" id="Fhe-82-idP"/>
+                    <constraint firstItem="vZR-A6-AOY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="270" id="QA3-J9-Ctu"/>
+                    <constraint firstItem="vZR-A6-AOY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="50" id="dL2-Zf-JVF"/>
+                    <constraint firstItem="jDM-VL-V2S" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="320" id="gWN-W4-eio"/>
+                    <constraint firstItem="vUz-dG-hN3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ih7-rS-r9i"/>
+                    <constraint firstItem="jDM-VL-V2S" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="50" id="yhh-93-AKv"/>
+                    <constraint firstItem="vUz-dG-hN3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zKS-Ja-e9h"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="haloBackView" destination="vZR-A6-AOY" id="JAQ-Vd-VIK"/>
+                <outlet property="haloFrontView" destination="hh8-Jv-kt9" id="MWM-gP-XbZ"/>
+                <outlet property="haloMiddleView" destination="jDM-VL-V2S" id="dXR-21-b0m"/>
+            </connections>
+            <point key="canvasLocation" x="50.000000000000007" y="35.825892857142854"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="kat_plani_2_TR_b" width="573" height="591"/>
+    </resources>
+</document>

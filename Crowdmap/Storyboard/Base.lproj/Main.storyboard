@@ -40,20 +40,44 @@
                                     <constraint firstAttribute="height" constant="100" id="xfo-vC-eUS"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCY-78-mxs">
+                                <rect key="frame" x="0.0" y="100" width="375" height="200"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjE-eO-iNS">
+                                        <rect key="frame" x="8" y="10" width="359" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="B1d-Yw-eWE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="OjE-eO-iNS" firstAttribute="leading" secondItem="vCY-78-mxs" secondAttribute="leading" constant="8" id="Wsj-EK-aBh"/>
+                                    <constraint firstAttribute="trailing" secondItem="OjE-eO-iNS" secondAttribute="trailing" constant="8" id="YqF-BC-lKx"/>
+                                    <constraint firstAttribute="height" constant="200" id="hCh-lU-DvY"/>
+                                    <constraint firstItem="OjE-eO-iNS" firstAttribute="top" secondItem="vCY-78-mxs" secondAttribute="top" constant="10" id="t3w-P8-lgc"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KHz-GE-z7g">
-                                <rect key="frame" x="0.0" y="100" width="375" height="508"/>
+                                <rect key="frame" x="0.0" y="300" width="375" height="308"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="u59-wd-Ne7" firstAttribute="trailing" secondItem="vCY-78-mxs" secondAttribute="trailing" id="6bv-3J-eSW"/>
+                            <constraint firstItem="vCY-78-mxs" firstAttribute="top" secondItem="wDS-d2-vtB" secondAttribute="bottom" id="frQ-zN-xT5"/>
                             <constraint firstItem="KHz-GE-z7g" firstAttribute="leading" secondItem="u59-wd-Ne7" secondAttribute="leading" id="mJP-hT-lxW"/>
                             <constraint firstItem="wDS-d2-vtB" firstAttribute="trailing" secondItem="u59-wd-Ne7" secondAttribute="trailing" id="pSq-JT-wih"/>
-                            <constraint firstItem="KHz-GE-z7g" firstAttribute="top" secondItem="wDS-d2-vtB" secondAttribute="bottom" id="pYZ-qm-Bxu"/>
+                            <constraint firstItem="KHz-GE-z7g" firstAttribute="top" secondItem="vCY-78-mxs" secondAttribute="bottom" id="pYZ-qm-Bxu"/>
                             <constraint firstItem="u59-wd-Ne7" firstAttribute="trailing" secondItem="KHz-GE-z7g" secondAttribute="trailing" id="qMG-Gr-51f"/>
                             <constraint firstItem="u59-wd-Ne7" firstAttribute="bottom" secondItem="KHz-GE-z7g" secondAttribute="bottom" constant="10" id="qmb-Xl-bN6"/>
                             <constraint firstItem="wDS-d2-vtB" firstAttribute="top" secondItem="shG-dh-F0n" secondAttribute="top" id="vvJ-mR-wMh"/>
+                            <constraint firstItem="vCY-78-mxs" firstAttribute="leading" secondItem="u59-wd-Ne7" secondAttribute="leading" id="wzZ-eV-TGc"/>
                             <constraint firstItem="wDS-d2-vtB" firstAttribute="leading" secondItem="u59-wd-Ne7" secondAttribute="leading" id="y33-4y-BLu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="u59-wd-Ne7"/>
@@ -73,7 +97,10 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="LOCATIONS" id="iVp-x0-o4i"/>
                     <connections>
+                        <outlet property="closestLocationLabel" destination="OjE-eO-iNS" id="Zou-g0-YOK"/>
                         <outlet property="foldingTableView" destination="KHz-GE-z7g" id="WyO-DL-csV"/>
+                        <outlet property="headerMaxViewHeightConstraint" destination="hCh-lU-DvY" id="GTh-zr-poG"/>
+                        <outlet property="headerView" destination="vCY-78-mxs" id="usU-ju-RAl"/>
                         <outlet property="topView" destination="wDS-d2-vtB" id="ojr-IH-b4n"/>
                     </connections>
                 </viewController>
@@ -97,11 +124,34 @@
         <!--Profile-->
         <scene sceneID="5cP-hC-R5i">
             <objects>
-                <viewController id="oPH-CK-V4J" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oPH-CK-V4J" customClass="ProfileViewController" customModule="Crowdmap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XbT-zt-Rcf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbG-I0-klY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="iUf-cu-E2j"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3sn-2V-rGb">
+                                <rect key="frame" x="122.5" y="130" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="7Vv-1y-h3v"/>
+                                    <constraint firstAttribute="width" constant="130" id="o8u-wh-jnM"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3sn-2V-rGb" firstAttribute="centerX" secondItem="XbT-zt-Rcf" secondAttribute="centerX" id="5dI-TH-A7C"/>
+                            <constraint firstItem="BbG-I0-klY" firstAttribute="leading" secondItem="odC-TH-vQj" secondAttribute="leading" id="6ZB-ez-Z9l"/>
+                            <constraint firstItem="BbG-I0-klY" firstAttribute="trailing" secondItem="odC-TH-vQj" secondAttribute="trailing" id="JOF-PZ-z2d"/>
+                            <constraint firstItem="3sn-2V-rGb" firstAttribute="top" secondItem="odC-TH-vQj" secondAttribute="top" constant="110" id="ejk-i0-cdX"/>
+                            <constraint firstItem="BbG-I0-klY" firstAttribute="top" secondItem="XbT-zt-Rcf" secondAttribute="top" id="oq5-tJ-JO7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="odC-TH-vQj"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="user_male" id="OTa-sf-kXE" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
@@ -117,6 +167,10 @@
                             <outlet property="animation" destination="vvt-8i-xg2" id="qlB-jP-j1M"/>
                         </connections>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="profilePictureView" destination="3sn-2V-rGb" id="X2p-L6-H14"/>
+                        <outlet property="topView" destination="BbG-I0-klY" id="p8g-SV-xtO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLh-MP-Jcm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="vvt-8i-xg2" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
@@ -133,7 +187,7 @@
                     </userDefinedRuntimeAttributes>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="3705" y="-217"/>
+            <point key="canvasLocation" x="3704.8000000000002" y="-217.24137931034485"/>
         </scene>
         <!--Settings-->
         <scene sceneID="uQ8-Sc-lME">
@@ -415,7 +469,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pwa-UN-TKm">
-                                <rect key="frame" x="50" y="233.5" width="275" height="200"/>
+                                <rect key="frame" x="50" y="206" width="275" height="255"/>
                                 <subviews>
                                     <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="   Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zh1-7L-5rY" customClass="LoginRegisterTextField" customModule="Crowdmap" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="35"/>
@@ -424,7 +478,7 @@
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" textContentType="name"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" textContentType="given-name"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="user_male"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -432,8 +486,20 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="   Email " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7qO-kV-2kB" customClass="LoginRegisterTextField" customModule="Crowdmap" customModuleProvider="target">
+                                    <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="   Lastname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dwy-Fb-tMl" customClass="LoginRegisterTextField" customModule="Crowdmap" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55" width="275" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="cHd-Ol-8W7"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" textContentType="family-name"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="user_male"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="   Email " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7qO-kV-2kB" customClass="LoginRegisterTextField" customModule="Crowdmap" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="110" width="275" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="9yU-EJ-DxP"/>
                                             <constraint firstAttribute="height" constant="35" id="I0R-qS-qI2"/>
@@ -449,7 +515,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="   Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T0l-gE-MCr" customClass="LoginRegisterTextField" customModule="Crowdmap" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="110" width="275" height="35"/>
+                                        <rect key="frame" x="0.0" y="165" width="275" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="hhQ-J6-hol"/>
                                         </constraints>
@@ -464,7 +530,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCo-lj-LSB" customClass="LoginRegisterButton" customModule="Crowdmap" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="165" width="275" height="35"/>
+                                        <rect key="frame" x="0.0" y="220" width="275" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="Xb3-Z1-uE3"/>
                                         </constraints>
@@ -494,6 +560,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="7qO-kV-2kB" id="RPU-wC-tJc"/>
+                        <outlet property="lastNameTextField" destination="dwy-Fb-tMl" id="DDu-BQ-57j"/>
                         <outlet property="nameTextField" destination="zh1-7L-5rY" id="0Mu-ch-n8n"/>
                         <outlet property="passwordTextField" destination="T0l-gE-MCr" id="hRt-Vz-yTV"/>
                         <outlet property="signupButton" destination="pCo-lj-LSB" id="HMU-OX-oDI"/>

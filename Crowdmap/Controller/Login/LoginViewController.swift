@@ -27,18 +27,13 @@ class LoginViewController: BaseViewController , UITextFieldDelegate, GIDSignInUI
         passwordTextField.delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
     @IBAction func loginAction(_ sender: Any) {
         showLoadingHUD()
         view.endEditing(true)
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error == nil{
                 if (Auth.auth().currentUser?.isEmailVerified)! {
+                    User.user.isVerified = true
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController") as! RAMAnimatedTabBarController
                     self.present(nextVC, animated: true, completion: nil)
@@ -63,7 +58,10 @@ class LoginViewController: BaseViewController , UITextFieldDelegate, GIDSignInUI
             }
         }
     }
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
 

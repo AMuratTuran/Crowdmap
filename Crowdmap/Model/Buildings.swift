@@ -9,16 +9,24 @@
 import UIKit
 import CoreLocation
 
-struct Location: Decodable {
+struct Buildings: Decodable {
     
     var ringValue: CGFloat?
     var locationType: LocationType?
     var locationName: String?
     var numberOfPeople: Int?
-
+    var detailedLocationType: detailedLibrary?
+    
     private enum CodingKeys: String, CodingKey {
-        case locationName = "Region"
-        case numberOfPeople = "crowdedness"
+        case locationName = "APName"
+        case numberOfPeople = "APCount"
+    }
+    init() {
+        self.ringValue = 0.0
+        self.locationType = nil
+        self.detailedLocationType = nil
+        self.locationName = nil
+        self.numberOfPeople = 0
     }
 }
 

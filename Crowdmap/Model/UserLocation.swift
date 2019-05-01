@@ -38,7 +38,7 @@ class UserLocation: Codable {
     }
     
     convenience init(visit: CLVisit, descriptionString: String) {
-        self.init(visit.coordinate, date: visit.arrivalDate, descriptionString: descriptionString)
+         self.init(visit.coordinate, date: visit.arrivalDate, descriptionString: descriptionString)
     }
 }
 

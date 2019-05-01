@@ -54,10 +54,10 @@ class FoldingTableViewCell: FoldingCell {
         return durations[itemIndex]
     }
     
-    func updateCell(location: inout Location){
+    func updateCell(location: inout Buildings){
         let count: Int = location.numberOfPeople!
         var locationType: LocationType?
-        
+        progressRing.isHidden = false
         switch location.locationName {
         case LocationType.libraryminus.text:
             locationType = LocationType.libraryminus
@@ -104,16 +104,24 @@ class FoldingTableViewCell: FoldingCell {
             capacity = locationType!.capacity
             locationLabel.text = LocationType.gym.displayText
         default:
-            progressRing.value = 0.0
-            locationLabel.text = ""
+            progressRing.isHidden = true
+            locationLabel.text = "Location info not available."
         }
         
         location.locationType = locationType
+        
+  
         ringValue = CGFloat((location.numberOfPeople! * 100) / capacity)
         location.ringValue = ringValue
-        seats = capacity - location.numberOfPeople!
+       
         detailLocationLabel.text = locationLabel.text
-        numberOfPeopleLabel.text = String(count)
+        if locationType == .libraryfirst || locationType == .libraryzero || locationType == .libraryminus || locationType == .librarytwentyfour || locationType == .librarysecond || locationType == .neroSC {
+            numberOfPeopleLabel.text = String(Int(Double(location.numberOfPeople!) * 0.7))
+            seats = capacity - Int(Double(location.numberOfPeople!) * 0.7)
+        } else {
+            numberOfPeopleLabel.text = String(location.numberOfPeople!)
+            seats = capacity - location.numberOfPeople!
+        }
         avaibleChairsLabel.text = String(seats)
         colorRing(value: ringValue)
     }

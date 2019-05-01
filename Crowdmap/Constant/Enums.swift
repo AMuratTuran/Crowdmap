@@ -21,6 +21,7 @@ enum LocationType: String{
     case libraryfirst
     case librarysecond
     case librarytwentyfour
+    case error
     
     var displayText: String {
         switch self {
@@ -35,7 +36,7 @@ enum LocationType: String{
         case .yemekhane: return "Yemekhane"
         case .neroSC: return "Nero Student Center"
         case .neroCAS: return "Nero CAS"
-            
+        case .error: return "Error"
         }
     }
     
@@ -52,22 +53,24 @@ enum LocationType: String{
         case .ice: return "Ice"
         case .foodCourt: return "Food Court"
         case .yemekhane: return "Yemekhane"
+        case .error: return "Error"
         }
     }
     
     var capacity: Int {
         switch self {
-        case .libraryminus: return 300
-        case .libraryzero: return 250
-        case .libraryfirst: return 300
-        case .librarysecond: return 300
-        case .librarytwentyfour: return 300
-        case .gym: return 300
+        case .libraryminus: return 80
+        case .libraryzero: return 80
+        case .libraryfirst: return 150
+        case .librarysecond: return 350 // değişebilir.
+        case .librarytwentyfour: return 120
+        case .gym: return 200
         case .neroCAS: return 100
-        case .neroSC: return 200
-        case .ice: return 150
-        case .foodCourt: return 250
+        case .neroSC: return 150
+        case .ice: return 50
+        case .foodCourt: return 300
         case .yemekhane: return 250
+        case .error: return 1
         }
     }
     
@@ -84,6 +87,7 @@ enum LocationType: String{
         case .ice: return UIImage(named: "Ice")!
         case .foodCourt: return UIImage(named: "Ömer")!
         case .yemekhane: return UIImage(named: "Yemekhane")!
+        case .error: return UIImage()
         }
     }
     
@@ -100,6 +104,71 @@ enum LocationType: String{
         case .ice: return CLLocation(latitude: 41.2066, longitude: 29.0717)
         case .foodCourt: return CLLocation(latitude: 41.2049, longitude: 29.0732)
         case .yemekhane: return CLLocation(latitude: 41.2049, longitude: 29.0732)
+        case .error: return CLLocation(latitude: 0.0, longitude: 0.0)
+        }
+    }
+}
+
+enum detailedLibrary {
+//    case LibraryMinusMiddle
+//    case LibraryMinusRight
+//    case LibraryMinusLeft
+//
+    case LibraryTwentyFourMiddle
+    case LibraryTwentyFourFront
+    case LibraryTwentyFourBack
+//
+//    case LibraryZeroMiddle
+//
+//    case LibraryFirstFrontMiddle
+//    case LibraryFirstLeftFront
+//    case LibraryFirstRightFront
+//    case LibraryFirstLeftMiddle
+//    case LibraryFirstRightMiddle
+//    case LibraryFirstRightBack
+    
+    case LibrarySecondRightMiddle
+    case LibrarySecondRight
+    case LibrarySecondLeft
+    case LibrarySecondRightFront
+    case LibrarySecondLeftMiddle
+    case LibrarySecondLeftFront
+    case LibrarySecondFrontMiddle
+    case LibrarySecondLeftBack
+    case LibrarySecondRightBack
+    case error
+    
+    var capacity: Int {
+        switch self {
+//        case .LibraryMinusMiddle: return 300
+//        case .LibraryMinusRight: return 300
+//        case .LibraryMinusLeft: return 300
+//
+        case .LibraryTwentyFourMiddle: return 40
+        case .LibraryTwentyFourFront: return 40
+        case .LibraryTwentyFourBack: return 40
+//
+//        case .LibraryZeroMiddle: return 300
+//
+//        case .LibraryFirstFrontMiddle: return 300
+//        case .LibraryFirstLeftFront: return 300
+//        case .LibraryFirstRightFront: return 300
+//        case .LibraryFirstLeftMiddle: return 300
+//        case .LibraryFirstRightMiddle: return 300
+//        case .LibraryFirstRightBack: return 300
+//
+        case .LibrarySecondRightMiddle: return 45
+        case .LibrarySecondRight: return 45
+        case .LibrarySecondLeft: return 45
+        case .LibrarySecondRightFront: return 30
+        case .LibrarySecondLeftMiddle: return 45
+        case .LibrarySecondLeftFront: return 45
+        case .LibrarySecondFrontMiddle: return 45
+        case .LibrarySecondLeftBack: return 25
+        case .LibrarySecondRightBack: return 25
+            
+        case .error: return 1
+            
         }
     }
 }

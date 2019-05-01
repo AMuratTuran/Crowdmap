@@ -13,6 +13,9 @@
         <array key="OpenSans-Bold.ttf">
             <string>OpenSans-Bold</string>
         </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
     </customFonts>
     <scenes>
         <!--LocName-->
@@ -54,20 +57,64 @@
                                     <constraint firstAttribute="bottom" secondItem="iqp-NB-1cK" secondAttribute="bottom" constant="15" id="szP-sC-DTH"/>
                                 </constraints>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aVf-6G-okX">
+                                <rect key="frame" x="0.0" y="100" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXj-z5-9PP">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
+                                        <color key="tintColor" red="0.18039215689999999" green="0.69411764710000001" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Detail">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="detailButtonTapped:" destination="rBh-Us-DiC" eventType="touchUpInside" id="5f5-J3-DYl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSM-bF-ZS6">
+                                        <rect key="frame" x="125" y="0.0" width="125" height="50"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
+                                        <color key="tintColor" red="0.18039215689999999" green="0.69411764710000001" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Map">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="mapButtonTapped:" destination="rBh-Us-DiC" eventType="touchUpInside" id="51B-4O-cuQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28U-UK-b2A">
+                                        <rect key="frame" x="250" y="0.0" width="125" height="50"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
+                                        <color key="tintColor" red="0.18039215689999999" green="0.69411764710000001" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="History">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="historyButtonTapped:" destination="rBh-Us-DiC" eventType="touchUpInside" id="28B-fH-7Bp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="3l7-H7-jhY"/>
+                                </constraints>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="34q-Js-Tee">
-                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                                <rect key="frame" x="0.0" y="150" width="375" height="517"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
+                            <constraint firstItem="34q-Js-Tee" firstAttribute="top" secondItem="aVf-6G-okX" secondAttribute="bottom" id="2oc-jX-zd5"/>
+                            <constraint firstItem="B1S-T1-FPf" firstAttribute="trailing" secondItem="aVf-6G-okX" secondAttribute="trailing" id="38B-pC-0GW"/>
                             <constraint firstItem="vNg-DZ-QpS" firstAttribute="trailing" secondItem="B1S-T1-FPf" secondAttribute="trailing" id="6AD-tc-Ft4"/>
                             <constraint firstItem="34q-Js-Tee" firstAttribute="leading" secondItem="B1S-T1-FPf" secondAttribute="leading" id="9Zv-jT-67F"/>
                             <constraint firstItem="vNg-DZ-QpS" firstAttribute="top" secondItem="1zh-g9-cBc" secondAttribute="top" id="TLp-oA-4cQ"/>
                             <constraint firstItem="B1S-T1-FPf" firstAttribute="trailing" secondItem="34q-Js-Tee" secondAttribute="trailing" id="Tfk-yx-oZC"/>
+                            <constraint firstItem="aVf-6G-okX" firstAttribute="leading" secondItem="B1S-T1-FPf" secondAttribute="leading" id="fRD-Cb-pfN"/>
                             <constraint firstItem="vNg-DZ-QpS" firstAttribute="leading" secondItem="B1S-T1-FPf" secondAttribute="leading" id="fdm-y3-6L9"/>
-                            <constraint firstItem="34q-Js-Tee" firstAttribute="top" secondItem="vNg-DZ-QpS" secondAttribute="bottom" id="sEC-9U-dJb"/>
+                            <constraint firstItem="aVf-6G-okX" firstAttribute="top" secondItem="vNg-DZ-QpS" secondAttribute="bottom" id="mqy-c2-Iru"/>
                             <constraint firstItem="B1S-T1-FPf" firstAttribute="bottom" secondItem="34q-Js-Tee" secondAttribute="bottom" id="sh2-TN-cim"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B1S-T1-FPf"/>
@@ -76,8 +123,12 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="3FH-Oy-6LK"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="detailButton" destination="CXj-z5-9PP" id="5KE-FH-Gn0"/>
                         <outlet property="detailTableView" destination="34q-Js-Tee" id="GIj-ZD-3xY"/>
+                        <outlet property="historyButton" destination="28U-UK-b2A" id="azv-EA-sd6"/>
+                        <outlet property="mapButton" destination="NSM-bF-ZS6" id="F6Z-a0-kbU"/>
                         <outlet property="nameLabel" destination="3JN-wT-DgW" id="6nJ-b6-gE9"/>
+                        <outlet property="segmentedControl" destination="aVf-6G-okX" id="ZDX-Vj-atR"/>
                         <outlet property="topBar" destination="vNg-DZ-QpS" id="Z7I-4k-KdU"/>
                     </connections>
                 </viewController>

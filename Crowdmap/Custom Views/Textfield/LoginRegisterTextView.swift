@@ -36,6 +36,7 @@ class LoginRegisterTextField: UITextField, UITextViewDelegate{
             self.textContentType = .emailAddress
             case 2: self.attributedPlaceholder = NSAttributedString(string: "   Enter password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.9)])
             case 3: self.attributedPlaceholder = NSAttributedString(string: "   Enter name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.9)])
+            case 4: self.attributedPlaceholder = NSAttributedString(string: "   Enter last name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.9)])
             default: self.attributedPlaceholder = NSAttributedString(string: "   ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.9)])
             }
             self.backgroundColor = UIColor.clear
@@ -47,7 +48,6 @@ class LoginRegisterTextField: UITextField, UITextViewDelegate{
                 self.leftView = customView
             }
             translatesAutoresizingMaskIntoConstraints = false
-            self.autocorrectionType = .yes
             self.addSubview(lineView)
         }
     }

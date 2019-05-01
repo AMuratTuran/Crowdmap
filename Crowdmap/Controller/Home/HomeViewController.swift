@@ -21,21 +21,47 @@ class HomeViewController: BaseViewController {
         static let closeCellHeight: CGFloat = 120
         static let openCellHeight: CGFloat = 240
         static let rowsCount = 11
+        static let headerViewMaxHeight: CGFloat = 200
+        static let headerViewMinHeight: CGFloat = 0
     }
     
-    var locations: [Location] = []
+    var locations: [Buildings] = []
+    var groupedLocations: [Buildings] = []
     var cellHeights: [CGFloat] = []
     var progressBarValues: [CGFloat] = []
     var values: [CGFloat] = []
+    var libraryZeroAPs:[Buildings] = []
+    var cumulativeLibraryZero:Buildings = Buildings()
+    var libraryMinusAPs:[Buildings] = []
+    var cumulativeLibraryMinus:Buildings = Buildings()
+    var libraryTwentyfourAPs:[Buildings] = []
+    var cumulativeLibraryTwentyFour:Buildings = Buildings()
+    var librarySecondAPs:[Buildings] = []
+    var cumulativeLibrarySecond:Buildings = Buildings()
+    var libraryFirstAPs:[Buildings] = []
+    var cumulativeLibraryFirst:Buildings = Buildings()
+    var gymAPs:[Buildings] = []
+    var cumulativeGym:Buildings = Buildings()
+    var yemekhaneAPs:[Buildings] = []
+    var cumulativeYemekhane:Buildings = Buildings()
+    var iceAPs:[Buildings] = []
+    var cumulativeIce:Buildings = Buildings()
+    var neroSCAPs:[Buildings] = []
+    var cumulativeNeroSC:Buildings = Buildings()
+    var neroCASAPs:[Buildings] = []
+    var cumulativeNeroCAS:Buildings = Buildings()
+    var studentCenterAPs:[Buildings] = []
+    var cumulativeStudentCenter:Buildings = Buildings()
     var currentTime = Date()
     let refreshControl = UIRefreshControl()
     let locationManager = CLLocationManager()
-    let center = UNUserNotificationCenter.current()
-    var coordinates: CLLocationCoordinate2D?
-    let notificationManager = NotificationManager()
+    var groupedAps: [[Buildings]] = []
     
     @IBOutlet weak var foldingTableView: UITableView!
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var headerMaxViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var closestLocationLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,28 +72,29 @@ class HomeViewController: BaseViewController {
         configureLocationServices()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        locationManager.startUpdatingLocation()
+    }
     @objc func reloadData() {
         getData()
     }
     @objc func detailButtonPressed(sender: UIButton){
+        
+      
         let storyboard : UIStoryboard = UIStoryboard(name: "LocationDetail", bundle: nil)
         let vc : LocationDetailViewController = storyboard.instantiateViewController(withIdentifier: "LocationDetailViewController") as! LocationDetailViewController
-        vc.location = locations[sender.tag]
+        vc.location = groupedLocations[sender.tag]
+        vc.groupedAPs = groupedAps
         self.present(vc, animated: true, completion: nil)
     }
     private func configureLocationServices(){
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
+            locationManager.requestLocation()
         }
     }
-    func calculateDistance(){
-        //        let loc = CLLocation(latitude: coordinates!.latitude, longitude: coordinates!.longitude)
-        //        let distanceInMeters = loc.distance(from: LocationType.foodCourt.coordinates)
-        //        print(distanceInMeters)
-    }
-    private func  configureRefreshControl(){
+    private func configureRefreshControl(){
         refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
         refreshControl.tintColor = UIColor.flatMint
         foldingTableView.addSubview(refreshControl)
@@ -77,7 +104,7 @@ class HomeViewController: BaseViewController {
         topView.backgroundColor = UIColor.navigationBarColor
     }
     private func configureTableView(){
-        
+
         cellHeights = Array(repeating: Const.closeCellHeight, count: Const.rowsCount)
         progressBarValues = Array(repeating: 0.0, count: 11)
         values = Array(repeating: 0.0, count: 11)
@@ -93,21 +120,22 @@ class HomeViewController: BaseViewController {
         foldingTableView.separatorStyle = .none
     }
     private func getData(){
-        let url: String = "https://pingit.denizdaum.de/AppAPI.php/AxsH2E8HxOCodX"
+        // let url: String = "https://pingit.denizdaum.de/AppAPI.php/AxsH2E8HxOCodX"
+        let url: String = "https://pingit.denizdaum.de/AppAPI.php/ETV2bKtYbrNmoArK5w"
         Alamofire.request(url)
             .responseData { response in
                 guard let data = response.result.value else {
                     print("Error: No data to decode")
                     return
                 }
-                guard let allLocations = try? JSONDecoder().decode([Location].self, from: data) else {
+                guard let allLocations = try? JSONDecoder().decode([Buildings].self, from: data) else {
                     print("Error: Couldn't decode data into Blog")
                     return
                 }
                 self.locations = allLocations
+                self.groupLocations(self.locations)
                 self.refreshControl.endRefreshing()
                 self.foldingTableView.reloadData()
-                self.calculateDistance()
         }
     }
 }
@@ -115,7 +143,7 @@ class HomeViewController: BaseViewController {
 extension HomeViewController: UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        return groupedLocations.count
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -124,30 +152,31 @@ extension HomeViewController: UITableViewDataSource,UITableViewDelegate {
         cell.backgroundColor = .clear
         if values[indexPath.row] == 0{
             DispatchQueue.main.async {
-                cell.progressRing.startProgress(to: self.locations[indexPath.row].ringValue!, duration: 1)
+                cell.progressRing.startProgress(to: self.groupedLocations[indexPath.row].ringValue!, duration: 1)
             }
             values[indexPath.row] = progressBarValues[indexPath.row]
         }else{
-            cell.progressRing.startProgress(to: self.locations[indexPath.row].ringValue!, duration: 0)
+            cell.progressRing.startProgress(to: self.groupedLocations[indexPath.row].ringValue!, duration: 0)
         }
         
-        if  cell.progressRing.value != progressBarValues[indexPath.row] && indexPath.row > 4 {
-            cell.progressRing.startProgress(to: self.locations[indexPath.row].ringValue! , duration: 0)
+        if  cell.progressRing.value != progressBarValues[indexPath.row] && indexPath.row > 2 {
+            cell.progressRing.startProgress(to: self.groupedLocations[indexPath.row].ringValue! , duration: 0)
         }
-        cell.detailProgressRing.value = self.locations[indexPath.row].ringValue!
+        cell.detailProgressRing.value = self.groupedLocations[indexPath.row].ringValue!
         
         
-        
-        if cellHeights[indexPath.row] == Const.closeCellHeight {
-            cell.unfold(false, animated: false, completion: nil)
-        } else {
-            cell.unfold(true, animated: false, completion: nil)
+        if !cellHeights.isEmpty{
+            if cellHeights[indexPath.row] == Const.closeCellHeight {
+                cell.unfold(false, animated: false, completion: nil)
+            } else {
+                cell.unfold(true, animated: false, completion: nil)
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingTableViewCell", for: indexPath) as! FoldingTableViewCell
-        var currentLocation = locations[indexPath.row]
+        var currentLocation = groupedLocations[indexPath.row]
         
         displayCell(currentLocation: &currentLocation, cell: cell, indexPath: indexPath)
         
@@ -158,7 +187,11 @@ extension HomeViewController: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeights[indexPath.row]
+        if cellHeights.isEmpty {
+            return 0
+        }else {
+            return cellHeights[indexPath.row]
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -184,28 +217,190 @@ extension HomeViewController: UITableViewDataSource,UITableViewDelegate {
             tableView.beginUpdates()
             tableView.endUpdates()
         }, completion: nil)
-        
-        //        NotificationManager().scheduleNotification(notificationType: "Notification Test")
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let y: CGFloat = scrollView.contentOffset.y
+        let newHeaderViewHeight: CGFloat = headerMaxViewHeightConstraint.constant - y
+        
+        if newHeaderViewHeight > Const.headerViewMaxHeight {
+            headerMaxViewHeightConstraint.constant = Const.headerViewMaxHeight
+        } else if newHeaderViewHeight < Const.headerViewMinHeight {
+            headerMaxViewHeightConstraint.constant = Const.headerViewMinHeight
+        } else {
+            headerMaxViewHeightConstraint.constant = newHeaderViewHeight
+            scrollView.contentOffset.y = 0 // block scroll view
+        }
+        if newHeaderViewHeight < 54 {
+             closestLocationLabel.alpha = 0
+        }else {
+             closestLocationLabel.alpha = newHeaderViewHeight / Const.headerViewMaxHeight
+        }
+       
+    }
+    
 }
 
 extension HomeViewController {
     
-    private func displayCell(currentLocation: inout Location, cell: FoldingTableViewCell, indexPath: IndexPath ){
+    private func displayCell(currentLocation: inout Buildings, cell: FoldingTableViewCell, indexPath: IndexPath ){
         
         cell.updateCell(location: &currentLocation)
-        locations[indexPath.row] = currentLocation
+        groupedLocations[indexPath.row] = currentLocation
         if progressBarValues[indexPath.row] == 0 {
             progressBarValues[indexPath.row] = currentLocation.ringValue!
         }
         cell.detailsButton.tag = indexPath.row
         cell.detailsButton.addTarget(self, action: #selector(detailButtonPressed(sender: )), for: .touchUpInside)
     }
+    
+    private func groupLocations(_ locations: [Buildings]){
+        
+        libraryZeroAPs = []
+        cumulativeLibraryZero = Buildings()
+        libraryMinusAPs = []
+        cumulativeLibraryMinus = Buildings()
+        libraryTwentyfourAPs = []
+        cumulativeLibraryTwentyFour = Buildings()
+        librarySecondAPs = []
+        cumulativeLibrarySecond = Buildings()
+        libraryFirstAPs = []
+        cumulativeLibraryFirst = Buildings()
+        gymAPs = []
+        cumulativeGym = Buildings()
+        yemekhaneAPs = []
+        cumulativeYemekhane = Buildings()
+        iceAPs = []
+        cumulativeIce = Buildings()
+        neroSCAPs = []
+        cumulativeNeroSC = Buildings()
+        neroCASAPs = []
+        cumulativeNeroCAS = Buildings()
+        studentCenterAPs = []
+        cumulativeStudentCenter = Buildings()
+        
+        locations.forEach { (building) in
+            let stringParser = StringParser()
+            let type = stringParser.parseLocationName(building.locationName!)
+            let detailedType = stringParser.detailedParse(building.locationName!)
+            var detailedBuilding = building
+            groupedLocations.removeAll()
+            switch type {
+            case .libraryminus:
+                libraryMinusAPs.append(building)
+                cumulativeLibraryMinus.locationType = type
+                cumulativeLibraryMinus.numberOfPeople! += building.numberOfPeople!
+                cumulativeLibraryMinus.locationName = type.text
+            case .libraryzero:
+                libraryZeroAPs.append(building)
+                cumulativeLibraryZero.locationType = type
+                cumulativeLibraryZero.numberOfPeople! += building.numberOfPeople!
+                cumulativeLibraryZero.locationName = type.text
+            case .libraryfirst:
+                libraryFirstAPs.append(building)
+                cumulativeLibraryFirst.locationType = type
+                cumulativeLibraryFirst.numberOfPeople! += building.numberOfPeople!
+                cumulativeLibraryFirst.locationName = type.text
+            case .librarysecond:
+                detailedBuilding.detailedLocationType = detailedType
+                librarySecondAPs.append(detailedBuilding)
+                cumulativeLibrarySecond.locationType = type
+                cumulativeLibrarySecond.numberOfPeople! += building.numberOfPeople!
+                cumulativeLibrarySecond.locationName = type.text
+                cumulativeLibrarySecond.detailedLocationType = detailedType
+            case .librarytwentyfour:
+                detailedBuilding.detailedLocationType = detailedType
+                libraryTwentyfourAPs.append(detailedBuilding)
+                cumulativeLibraryTwentyFour.locationType = type
+                cumulativeLibraryTwentyFour.numberOfPeople! += building.numberOfPeople!
+                cumulativeLibraryTwentyFour.locationName = type.text
+            case .gym:
+                gymAPs.append(building)
+                cumulativeGym.locationType = type
+                cumulativeGym.numberOfPeople! += building.numberOfPeople!
+                cumulativeGym.locationName = type.text
+            case .ice:
+                iceAPs.append(building)
+                cumulativeIce.locationType = type
+                cumulativeIce.numberOfPeople! += building.numberOfPeople!
+                cumulativeIce.locationName = type.text
+            case .foodCourt:
+                studentCenterAPs.append(building)
+                cumulativeStudentCenter.locationType = type
+                cumulativeStudentCenter.numberOfPeople! += building.numberOfPeople!
+                cumulativeStudentCenter.locationName = type.text
+            case .yemekhane:
+                yemekhaneAPs.append(building)
+                cumulativeYemekhane.locationType = type
+                cumulativeYemekhane.numberOfPeople! += building.numberOfPeople!
+                cumulativeYemekhane.locationName = type.text
+            case .neroSC:
+                neroSCAPs.append(building)
+                cumulativeNeroSC.locationType = type
+                cumulativeNeroSC.numberOfPeople! += building.numberOfPeople!
+                cumulativeNeroSC.locationName = type.text
+            case .neroCAS:
+                neroCASAPs.append(building)
+                cumulativeNeroCAS.locationType = type
+                cumulativeNeroCAS.numberOfPeople! += building.numberOfPeople!
+                cumulativeNeroCAS.locationName = type.text
+            case .error: break
+            }
+        }
+        groupedLocations = [cumulativeLibrarySecond, cumulativeLibraryFirst, cumulativeLibraryTwentyFour, cumulativeLibraryZero, cumulativeLibraryMinus, cumulativeNeroSC, cumulativeStudentCenter, cumulativeYemekhane, cumulativeGym, cumulativeNeroCAS, cumulativeIce]
+        groupedAps = [librarySecondAPs, libraryTwentyfourAPs, gymAPs, iceAPs, yemekhaneAPs, libraryZeroAPs, libraryFirstAPs, libraryMinusAPs, studentCenterAPs, neroSCAPs, neroCASAPs]
+    }
 }
 
 extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        coordinates = locValue
+        if let location = locations.first {
+            var distance:CLLocationDistance = Double.infinity
+            var closest:Buildings?
+            if !groupedLocations.isEmpty {
+                groupedLocations.forEach { (building) in
+                    if building.locationType != .ice && building.locationType != .yemekhane &&  building.locationType != .foodCourt{
+                        if building.locationType != nil {
+                            let dist = location.distance(from: building.locationType!.coordinates)
+                            if dist < distance {
+                                distance = dist
+                                closest = building
+                            }
+                        }
+                    }
+                }
+                if Double(closest!.ringValue!) < 50.0 {
+                    let type:LocationType = closest!.locationType!
+                    
+                    switch type {
+                    case .gym: closestLocationLabel.text = "\(closest!.locationType!.displayText) seems available.  "
+                    case .foodCourt: closestLocationLabel.text = "\(closest!.locationType!.displayText) seems available. Lunch Time!"
+                    case .ice: closestLocationLabel.text = "\(closest!.locationType!.displayText)"
+                    case .neroCAS: closestLocationLabel.text = "\(closest!.locationType!.displayText) seems available. Time to get some coffee."
+                    case .neroSC: closestLocationLabel.text = "\(closest!.locationType!.displayText) seems available. Study & Coffee"
+                    case .libraryminus: closestLocationLabel.text = "\(closest!.locationType!.displayText) seems available. Time to study!"
+                    case .libraryzero: closestLocationLabel.text = "\(closest!.locationType!.displayText) seems available. Time to study!"
+                    case .libraryfirst: closestLocationLabel.text = "\(closest!.locationType!.displayText) seems available. Time to study!"
+                    case .librarysecond: closestLocationLabel.text = "\(closest!.locationType!.displayText) seems available. Time to study!"
+                    case .librarytwentyfour: closestLocationLabel.text = "\(closest!.locationType!.displayText) seems available. Time to study!"
+                    case .error: closestLocationLabel.text = "Error"
+                    case .yemekhane: break
+                    }
+
+                    locationManager.stopUpdatingLocation()
+                }
+                
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("error:: \(error.localizedDescription)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
     }
 }

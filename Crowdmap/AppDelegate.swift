@@ -22,8 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-        locationManager.requestWhenInUseAuthorization()
+    //    locationManager.requestAlwaysAuthorization()
+  //      locationManager.requestWhenInUseAuthorization()
         notificationManager.notificationCenter.delegate = notificationManager
+    //    locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+     //   locationManager.startUpdatingLocation()
         notificationManager.notificationRequest()
         return true
     }

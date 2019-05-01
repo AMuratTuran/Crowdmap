@@ -30,7 +30,7 @@ class DetailsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(location: Location){
+    func configureCell(location: Buildings){
      self.locationImage.image = location.locationType?.image
      self.numberOfPeopleLabel.text = String(location.numberOfPeople!)
         self.chairLabel.text = String(location.locationType!.capacity - location.numberOfPeople!)

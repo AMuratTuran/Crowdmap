@@ -7,19 +7,31 @@
 //
 
 import UIKit
+import FirebaseDatabase
 import FirebaseAuth
+import Firebase
 import OnboardKit
 import GoogleSignIn
+
 
 class SingUpViewController: BaseViewController {
     
     var onboardingPages:[OnboardPage] = []
+    
     //  let onboardController = OnboardController()
     
     @IBOutlet weak var nameTextField: LoginRegisterTextField!
+    @IBOutlet weak var lastNameTextField: LoginRegisterTextField!
     @IBOutlet weak var emailTextField: LoginRegisterTextField!
     @IBOutlet weak var passwordTextField: LoginRegisterTextField!
     @IBOutlet weak var signupButton: LoginRegisterButton!
+    let databaseManager = DatabaseManager()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        signupButton.layer.cornerRadius = 10
+        self.hideKeyboardWhenTappedAround()
+    }
     
     
     @IBAction func signupAction(_ sender: Any) {
@@ -29,7 +41,7 @@ class SingUpViewController: BaseViewController {
         var errorMessage: String?
         
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!){ (user, error) in
-            if self.nameTextField.text == "" || self.emailTextField.text == "" || self.passwordTextField.text == "" {
+            if self.nameTextField.text == "" || self.emailTextField.text == "" || self.passwordTextField.text == "" || self.lastNameTextField.text == "" {
                 errorMessage = "Please fill all required areas!"
             }else if error == nil {
                 let emailValid = self.checkEmailAddress(self.emailTextField.text!)
@@ -38,6 +50,7 @@ class SingUpViewController: BaseViewController {
                         if error != nil{
                             print(error!)
                         }else {
+                            self.databaseManager.createUserAndSave(self.nameTextField.text!, self.lastNameTextField.text!, self.emailTextField.text! ) // save user to Firebase
                             let alertController = UIAlertController(title: "Verify your email", message: "After verification you can login", preferredStyle: .alert)
                             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
                                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -49,8 +62,6 @@ class SingUpViewController: BaseViewController {
                             self.present(alertController, animated: true, completion: nil)
                         }
                     })
-                    
-                    //  self.moveToOnboard()
                 }else{
                     errorMessage = "Please enter your Koc University Email"
                     
@@ -63,54 +74,10 @@ class SingUpViewController: BaseViewController {
                 self.hideLoadingHUD()
                 let alertController = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
                 alertController.addAction(defaultAction)
                 self.present(alertController, animated: true, completion: nil)
             }
         }
-        
-    }
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        signupButton.layer.cornerRadius = 10
-        self.hideKeyboardWhenTappedAround()
-        configureUI()
-        //        onboardingPages = onboardController.onboardingPages
-        //
-        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        
-    }
-    
-    //    @objc func keyboardWillShow(notification: NSNotification) {
-    //        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-    //            if self.view.frame.origin.y == 0 {
-    //                self.view.frame.origin.y -= keyboardSize.height / 2
-    //            }
-    //        }
-    //    }
-    //
-    //    @objc func keyboardWillHide(notification: NSNotification) {
-    //        if self.view.frame.origin.y != 0 {
-    //            self.view.frame.origin.y = 0
-    //        }
-    //    }
-    
-    func moveToOnboard(){
-        let onboardingVC = OnboardViewController(pageItems: onboardingPages)
-        onboardingVC.modalPresentationStyle = .formSheet
-        onboardingVC.presentFrom(self, animated: true)
-    }
-    
-    func configureUI(){
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "  Enter your KU email address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "  Enter password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        nameTextField.attributedPlaceholder = NSAttributedString(string: "  Enter your name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        passwordTextField.isSecureTextEntry = true
     }
     
     func checkEmailAddress(_ email: String) -> Bool {

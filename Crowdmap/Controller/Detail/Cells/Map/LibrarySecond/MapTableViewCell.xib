@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MapTableViewCell" rowHeight="461" id="KGk-i7-Jjw" customClass="MapTableViewCell" customModule="Crowdmap" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="415" height="461"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="415" height="460.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kat_plani_1_tr_b-ConvertImage" translatesAutoresizingMaskIntoConstraints="NO" id="1V7-hx-8Cd">
+                        <rect key="frame" x="0.0" y="0.0" width="415" height="460.5"/>
+                    </imageView>
+                    <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="GBR-gY-61q" userLabel="HaloRightFront">
+                        <rect key="frame" x="70" y="91" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="4BI-IN-FdS"/>
+                            <constraint firstAttribute="height" constant="50" id="qIs-EO-8lN"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="1J9-uP-HTF" userLabel="HaloRightMiddle">
+                        <rect key="frame" x="75" y="281" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="7C0-V3-e5Y"/>
+                            <constraint firstAttribute="width" constant="50" id="QAp-gC-zIV"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vKa-h8-kJJ" userLabel="HaloLeftMiddle">
+                        <rect key="frame" x="345" y="301" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="W3a-lh-qhc"/>
+                            <constraint firstAttribute="width" constant="50" id="eKS-t6-Z2O"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fod-Es-Mey" userLabel="HaloLeftBack">
+                        <rect key="frame" x="290" y="401" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="XrJ-5P-J6R"/>
+                            <constraint firstAttribute="height" constant="50" id="bi4-8v-8Gh"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gd-v9-W6A" userLabel="HaloLeftFront">
+                        <rect key="frame" x="335" y="90" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="FSC-oM-lFZ"/>
+                            <constraint firstAttribute="height" constant="50" id="zgp-ry-qlN"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUo-EP-Oh1" userLabel="HaloFrontMiddle">
+                        <rect key="frame" x="200" y="151" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="ArU-VF-gIL"/>
+                            <constraint firstAttribute="width" constant="50" id="gaO-EO-Pvq"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="dd0-na-cbt" userLabel="HaloRightBack">
+                        <rect key="frame" x="120" y="401" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="3am-La-Z0r"/>
+                            <constraint firstAttribute="width" constant="50" id="HVl-ai-YLV"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aR7-86-g4L" userLabel="HaloRight">
+                        <rect key="frame" x="80" y="310" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="YRu-xt-7Rh"/>
+                            <constraint firstAttribute="height" constant="50" id="mtV-vm-uaC"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tcz-t1-OJD" userLabel="HaloLeft">
+                        <rect key="frame" x="355" y="315" width="40" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="FyL-de-NjD"/>
+                            <constraint firstAttribute="height" constant="50" id="RPm-v0-lxA"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="tcz-t1-OJD" secondAttribute="bottom" constant="85" id="6I7-Yn-f44"/>
+                    <constraint firstItem="2gd-v9-W6A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="90" id="6hn-h6-EsP"/>
+                    <constraint firstItem="1V7-hx-8Cd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6xN-Gy-ivA"/>
+                    <constraint firstItem="fod-Es-Mey" firstAttribute="top" secondItem="GBR-gY-61q" secondAttribute="bottom" constant="260" id="GTT-su-Nhi"/>
+                    <constraint firstItem="GBR-gY-61q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="50" id="Hq7-FH-BeH"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="vKa-h8-kJJ" secondAttribute="trailing" id="PXX-Sg-Kkb"/>
+                    <constraint firstItem="GBR-gY-61q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="80" id="PyF-I5-HEm"/>
+                    <constraint firstItem="1V7-hx-8Cd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Qyt-dJ-hXM"/>
+                    <constraint firstItem="dd0-na-cbt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="100" id="SJS-oE-rjx"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="aR7-86-g4L" secondAttribute="bottom" constant="90" id="SWf-U1-klf"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fod-Es-Mey" secondAttribute="trailing" constant="55" id="XnZ-VH-83D"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="2gd-v9-W6A" secondAttribute="trailing" constant="10" id="ZT5-uX-pHL"/>
+                    <constraint firstAttribute="bottom" secondItem="1V7-hx-8Cd" secondAttribute="bottom" id="e7B-zo-ZnF"/>
+                    <constraint firstItem="dd0-na-cbt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="390" id="eDa-rI-imn"/>
+                    <constraint firstAttribute="trailing" secondItem="1V7-hx-8Cd" secondAttribute="trailing" id="eiu-mv-vCa"/>
+                    <constraint firstItem="1J9-uP-HTF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="55" id="enS-UO-QIg"/>
+                    <constraint firstItem="KUo-EP-Oh1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="180" id="hRB-zr-Bk6"/>
+                    <constraint firstItem="KUo-EP-Oh1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="140" id="iY1-o4-7o5"/>
+                    <constraint firstItem="vKa-h8-kJJ" firstAttribute="top" secondItem="GBR-gY-61q" secondAttribute="bottom" constant="160" id="pNc-kX-EG7"/>
+                    <constraint firstItem="aR7-86-g4L" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="60" id="tY8-bP-VVv"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="tcz-t1-OJD" secondAttribute="trailing" id="uje-JH-9kb"/>
+                    <constraint firstItem="1J9-uP-HTF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="270" id="y6b-ek-QTD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="haloFrontMiddleView" destination="KUo-EP-Oh1" id="i9t-bN-OdT"/>
+                <outlet property="haloLeftBackView" destination="fod-Es-Mey" id="nli-A5-IxB"/>
+                <outlet property="haloLeftFrontView" destination="2gd-v9-W6A" id="jAE-Qo-J73"/>
+                <outlet property="haloLeftMiddleView" destination="vKa-h8-kJJ" id="aau-o8-EFw"/>
+                <outlet property="haloLeftView" destination="tcz-t1-OJD" id="dOp-eA-Ngd"/>
+                <outlet property="haloRightBackView" destination="dd0-na-cbt" id="jjF-pv-0up"/>
+                <outlet property="haloRightFrontView" destination="GBR-gY-61q" id="AZ5-Cf-EWv"/>
+                <outlet property="haloRightMiddleView" destination="1J9-uP-HTF" id="8ce-Rm-FUF"/>
+                <outlet property="haloRightView" destination="aR7-86-g4L" id="v8b-zo-eY3"/>
+            </connections>
+            <point key="canvasLocation" x="136.80000000000001" y="-33.733133433283363"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="kat_plani_1_tr_b-ConvertImage" width="747" height="872"/>
+    </resources>
+</document>

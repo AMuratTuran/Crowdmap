@@ -22,7 +22,7 @@ class StartViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let user = Auth.auth().currentUser
-         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         if user != nil && (user?.isEmailVerified)! {
             let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
             self.present(nextVC, animated: true, completion: nil)
