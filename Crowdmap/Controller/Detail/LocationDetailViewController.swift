@@ -22,6 +22,7 @@ class LocationDetailViewController: BaseViewController {
     @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var historyButton: UIButton!
     var selectedTag = 0
+    var isFirstTime:Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -23,33 +23,37 @@ class MapTableViewCell: UITableViewCell {
     var viewsArray:[UIView] = []
     var location: Buildings?
     var groupedAPs: [[Buildings]]?
+    var isFirstTime:Bool = true
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         viewsArray = [ haloFrontMiddleView, haloLeftView, haloLeftBackView, haloLeftFrontView, haloLeftMiddleView, haloRightView, haloRightBackView, haloRightFrontView, haloRightMiddleView ]
-        assignPulsators()
         self.selectionStyle = .none
     }
     
     func assignPulsators(){
-        var count = 0
-        viewsArray.forEach { (view) in
-            let pulsator = Pulsator()
-            view.layer.addSublayer(pulsator)
-            colorPulsators(pulsator, count)
-            pulsator.numPulse = 5
-            pulsator.animationDuration = 5.0
-            pulsator.start()
-            if groupedAPs != nil {
-                if groupedAPs!.count < 9 {
-                    if count != 8{
-                        count += 1
+        if isFirstTime{
+            var count = 0
+            viewsArray.forEach { (view) in
+                let pulsator = Pulsator()
+                view.layer.addSublayer(pulsator)
+                colorPulsators(pulsator, count)
+                pulsator.numPulse = 5
+                pulsator.animationDuration = 5.0
+                pulsator.start()
+                if groupedAPs != nil {
+                    if groupedAPs!.count < 9 {
+                        if count != 8{
+                            count += 1
+                        }
                     }
                 }
             }
         }
-    }
+            isFirstTime = false
+        }
+
     
     func colorPulsators(_ pulsator: Pulsator, _ count: Int) {
         if self.groupedAPs != nil {

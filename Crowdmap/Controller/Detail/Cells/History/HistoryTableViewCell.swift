@@ -12,6 +12,15 @@ class HistoryTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = .clear
+        self.selectionStyle = .none
+        let myAttribute = [ NSAttributedString.Key.font: UIFont(name: "OpenSans-Semibold", size: 18.0)! , NSAttributedString.Key.foregroundColor: UIColor.white]
+        let myAttrString = NSAttributedString(string: "Coming Soon...", attributes: myAttribute)
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        label.center = CGPoint(x: 70, y: 20)
+        label.textAlignment = .center
+        label.attributedText = myAttrString
+        self.addSubview(label)
         // Initialization code
     }
 
