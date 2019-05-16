@@ -17,6 +17,7 @@ import GoogleSignIn
 class SingUpViewController: BaseViewController {
     
     var onboardingPages:[OnboardPage] = []
+    var ref: DatabaseReference!
     
     //  let onboardController = OnboardController()
     
@@ -29,6 +30,7 @@ class SingUpViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
         signupButton.layer.cornerRadius = 10
         self.hideKeyboardWhenTappedAround()
     }
@@ -45,6 +47,11 @@ class SingUpViewController: BaseViewController {
                 errorMessage = "Please fill all required areas!"
             }else if error == nil {
                 let emailValid = self.checkEmailAddress(self.emailTextField.text!)
+                let name = self.nameTextField.text
+                let last = self.lastNameTextField.text
+                self.ref.child("users").child(user?.user.uid ?? "").setValue(["first": name])
+                self.ref.child("users").child(user?.user.uid ?? "").setValue(["last": last])
+                
                 if emailValid {
                     Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
                         if error != nil{

@@ -28,6 +28,7 @@ class User{
     var major: String? = "-"
     var gender: Gender?
     var isVerified: Bool = false
+    var favPlaces : [String] = []
 
     init(){
         if gender == Gender.male {
