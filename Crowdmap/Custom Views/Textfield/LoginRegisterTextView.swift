@@ -30,7 +30,7 @@ class LoginRegisterTextField: UITextField, UITextViewDelegate{
             self.tintColor = UIColor.white
             let lineHeight = self.frame.size.height - 1
             lineView = UIView(frame: CGRect(x: 0, y: lineHeight, width: self.frame.size.width, height: 2))
-            lineView.backgroundColor = UIColor.kuRadarTabBar.withAlphaComponent(0.5)
+            lineView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
             switch self.tag{
             case 1: self.attributedPlaceholder = NSAttributedString(string: "   Enter email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.9)])
             self.textContentType = .emailAddress
@@ -80,11 +80,11 @@ class LoginRegisterTextField: UITextField, UITextViewDelegate{
     }
     
     private func textFieldDidBeginEditing(_ textField: UITextField) {
-        lineView.backgroundColor = UIColor.kuRadarTabBar.withAlphaComponent(0.9)
+        lineView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
     }
     
     private func textFieldDidEndEditing(_ textField: UITextField) {
-        lineView.backgroundColor = UIColor.kuRadarTabBar.withAlphaComponent(0.5)
+        lineView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
     }
     
     

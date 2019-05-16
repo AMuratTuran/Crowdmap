@@ -76,12 +76,18 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Gfs-3u-SwD">
+                                        <rect key="frame" x="167.5" y="52" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="OjE-eO-iNS" firstAttribute="top" secondItem="R9R-XH-SZ4" secondAttribute="bottom" constant="5" id="0Xk-D7-jW0"/>
                                     <constraint firstItem="Dlh-Q2-uQc" firstAttribute="top" secondItem="OjE-eO-iNS" secondAttribute="bottom" constant="10" id="6fh-AR-A0u"/>
+                                    <constraint firstItem="Gfs-3u-SwD" firstAttribute="top" secondItem="R9R-XH-SZ4" secondAttribute="bottom" constant="20" id="JaV-7i-KWy"/>
                                     <constraint firstItem="R9R-XH-SZ4" firstAttribute="top" secondItem="vCY-78-mxs" secondAttribute="top" constant="8" id="NNQ-q0-ctH"/>
+                                    <constraint firstItem="Gfs-3u-SwD" firstAttribute="centerX" secondItem="vCY-78-mxs" secondAttribute="centerX" id="PK3-9K-qeN"/>
+                                    <constraint firstItem="Dlh-Q2-uQc" firstAttribute="top" secondItem="Gfs-3u-SwD" secondAttribute="bottom" constant="25" id="SGe-yg-mE8"/>
                                     <constraint firstItem="yUv-fU-RIk" firstAttribute="leading" secondItem="vCY-78-mxs" secondAttribute="leading" constant="8" id="TaC-nY-3VT"/>
                                     <constraint firstItem="OjE-eO-iNS" firstAttribute="leading" secondItem="vCY-78-mxs" secondAttribute="leading" constant="8" id="Wsj-EK-aBh"/>
                                     <constraint firstAttribute="trailing" secondItem="OjE-eO-iNS" secondAttribute="trailing" constant="8" id="YqF-BC-lKx"/>
@@ -134,6 +140,7 @@
                         <outlet property="foldingTableView" destination="KHz-GE-z7g" id="WyO-DL-csV"/>
                         <outlet property="headerMaxViewHeightConstraint" destination="hCh-lU-DvY" id="GTh-zr-poG"/>
                         <outlet property="headerView" destination="vCY-78-mxs" id="usU-ju-RAl"/>
+                        <outlet property="locationLabelActivityIndicator" destination="Gfs-3u-SwD" id="lGz-Lh-4DK"/>
                         <outlet property="topView" destination="wDS-d2-vtB" id="ojr-IH-b4n"/>
                     </connections>
                 </viewController>
@@ -618,7 +625,7 @@
         <image name="HomeTabBarIcon" width="30" height="30"/>
         <image name="LoginBackground" width="1200" height="675"/>
         <image name="maintenance" width="30" height="30"/>
-        <image name="user_male" width="30" height="30"/>
+        <image name="user_male" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Pid-6e-PPY"/>

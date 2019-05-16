@@ -65,6 +65,7 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var closestLocationLabel: UILabel!
     @IBOutlet weak var bestPlaceToStudyLabel: UILabel!
     @IBOutlet weak var bestPlaceLabel: UILabel!
+    @IBOutlet weak var locationLabelActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -388,6 +389,8 @@ extension HomeViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
+
+            locationLabelActivityIndicator.startAnimating()
             var distance:CLLocationDistance = Double.infinity
             var closest:Buildings?
             if !groupedLocations.isEmpty {
@@ -420,6 +423,8 @@ extension HomeViewController: CLLocationManagerDelegate {
                     case .yemekhane: break
                     }
                     
+                    locationLabelActivityIndicator.stopAnimating()
+                    locationLabelActivityIndicator.isHidden = true
                     locationManager.stopUpdatingLocation()
                 }
                 
