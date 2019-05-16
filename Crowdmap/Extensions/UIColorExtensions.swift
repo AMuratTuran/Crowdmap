@@ -24,8 +24,15 @@ extension UIColor{
         return UIColor(red: 183/255, green: 0/255, blue: 3/255, alpha: 1.0)
     }
     
+    open class var locationExtraCrowdedColor:UIColor{
+        return UIColor(hexString: "#891325")!
+    }
     open class var locationCrowdedColor:UIColor{
         return UIColor(hexString: "#DF2F47")!
+    }
+    
+    open class var locationMediumColor:UIColor{
+        return UIColor(hexString: "#EA4D22")!
     }
     
     open class var locationNormalColor:UIColor{

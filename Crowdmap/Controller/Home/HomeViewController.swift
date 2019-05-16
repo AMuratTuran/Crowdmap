@@ -21,7 +21,7 @@ class HomeViewController: BaseViewController {
         static let closeCellHeight: CGFloat = 120
         static let openCellHeight: CGFloat = 240
         static let rowsCount = 11
-        static let headerViewMaxHeight: CGFloat = 200
+        static let headerViewMaxHeight: CGFloat = 175
         static let headerViewMinHeight: CGFloat = 0
     }
     
@@ -61,7 +61,10 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var headerMaxViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var BasedOnLocationLabel: UILabel!
     @IBOutlet weak var closestLocationLabel: UILabel!
+    @IBOutlet weak var bestPlaceToStudyLabel: UILabel!
+    @IBOutlet weak var bestPlaceLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +83,7 @@ class HomeViewController: BaseViewController {
     }
     @objc func detailButtonPressed(sender: UIButton){
         
-      
+        
         let storyboard : UIStoryboard = UIStoryboard(name: "LocationDetail", bundle: nil)
         let vc : LocationDetailViewController = storyboard.instantiateViewController(withIdentifier: "LocationDetailViewController") as! LocationDetailViewController
         vc.location = groupedLocations[sender.tag]
@@ -102,9 +105,10 @@ class HomeViewController: BaseViewController {
     private func configureHomeScreen(){
         foldingTableView.backgroundColor = UIColor.clear
         topView.backgroundColor = UIColor.navigationBarColor
+        headerView.backgroundColor = UIColor.mainCellColor
     }
     private func configureTableView(){
-
+        
         cellHeights = Array(repeating: Const.closeCellHeight, count: Const.rowsCount)
         progressBarValues = Array(repeating: 0.0, count: 11)
         values = Array(repeating: 0.0, count: 11)
@@ -150,28 +154,32 @@ extension HomeViewController: UITableViewDataSource,UITableViewDelegate {
         
         guard case let cell as FoldingTableViewCell = cell else {return}
         cell.backgroundColor = .clear
-        if values[indexPath.row] == 0{
-            DispatchQueue.main.async {
-                cell.progressRing.startProgress(to: self.groupedLocations[indexPath.row].ringValue!, duration: 1)
+        if groupedLocations != nil {
+            
+            let progressValue = self.groupedLocations[indexPath.row].ringValue!
+            if values[indexPath.row] == 0{
+                DispatchQueue.main.async {
+                    cell.progressRing.startProgress(to: progressValue, duration: 1)
+                }
+                values[indexPath.row] = progressBarValues[indexPath.row]
+            }else{
+                cell.progressRing.startProgress(to: progressValue, duration: 0)
             }
-            values[indexPath.row] = progressBarValues[indexPath.row]
-        }else{
-            cell.progressRing.startProgress(to: self.groupedLocations[indexPath.row].ringValue!, duration: 0)
-        }
-        
-        if  cell.progressRing.value != progressBarValues[indexPath.row] && indexPath.row > 2 {
-            cell.progressRing.startProgress(to: self.groupedLocations[indexPath.row].ringValue! , duration: 0)
-        }
-        cell.detailProgressRing.value = self.groupedLocations[indexPath.row].ringValue!
-        
-        
-        if !cellHeights.isEmpty{
-            if cellHeights[indexPath.row] == Const.closeCellHeight {
-                cell.unfold(false, animated: false, completion: nil)
-            } else {
-                cell.unfold(true, animated: false, completion: nil)
+            
+            if  cell.progressRing.value != progressBarValues[indexPath.row] && indexPath.row > 2 {
+                cell.progressRing.startProgress(to: progressValue , duration: 0)
+            }
+            cell.detailProgressRing.value = progressValue
+            
+            if !cellHeights.isEmpty{
+                if cellHeights[indexPath.row] == Const.closeCellHeight {
+                    cell.unfold(false, animated: false, completion: nil)
+                } else {
+                    cell.unfold(true, animated: false, completion: nil)
+                }
             }
         }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -227,16 +235,38 @@ extension HomeViewController: UITableViewDataSource,UITableViewDelegate {
             headerMaxViewHeightConstraint.constant = Const.headerViewMaxHeight
         } else if newHeaderViewHeight < Const.headerViewMinHeight {
             headerMaxViewHeightConstraint.constant = Const.headerViewMinHeight
+            bestPlaceLabel.alpha = 0
+            bestPlaceToStudyLabel.alpha = 0
+            closestLocationLabel.alpha = 0
+            BasedOnLocationLabel.alpha = 0
         } else {
             headerMaxViewHeightConstraint.constant = newHeaderViewHeight
             scrollView.contentOffset.y = 0 // block scroll view
         }
-        if newHeaderViewHeight < 54 {
-             closestLocationLabel.alpha = 0
+        
+        
+        if newHeaderViewHeight < 150 && newHeaderViewHeight >= 130 {
+            bestPlaceLabel.alpha = 0
+            BasedOnLocationLabel.alpha = newHeaderViewHeight / Const.headerViewMaxHeight
+            bestPlaceToStudyLabel.alpha = newHeaderViewHeight / Const.headerViewMaxHeight
+            closestLocationLabel.alpha = newHeaderViewHeight / Const.headerViewMaxHeight
+        }else if newHeaderViewHeight < 130 && newHeaderViewHeight >= 89 {
+            bestPlaceToStudyLabel.alpha = 0
+            bestPlaceLabel.alpha = 0
+            BasedOnLocationLabel.alpha = newHeaderViewHeight / Const.headerViewMaxHeight
+            closestLocationLabel.alpha = newHeaderViewHeight / Const.headerViewMaxHeight
+        }else if newHeaderViewHeight < 89 && newHeaderViewHeight >= 54 {
+            closestLocationLabel.alpha = 0
+            BasedOnLocationLabel.alpha = newHeaderViewHeight / Const.headerViewMaxHeight
+        }else if newHeaderViewHeight < 54{
+            BasedOnLocationLabel.alpha = 0
         }else {
-             closestLocationLabel.alpha = newHeaderViewHeight / Const.headerViewMaxHeight
+            bestPlaceLabel.alpha = newHeaderViewHeight / Const.headerViewMaxHeight
+            bestPlaceToStudyLabel.alpha = newHeaderViewHeight / Const.headerViewMaxHeight
+            closestLocationLabel.alpha = newHeaderViewHeight / Const.headerViewMaxHeight
+            BasedOnLocationLabel.alpha = newHeaderViewHeight / Const.headerViewMaxHeight
         }
-       
+        
     }
     
 }
@@ -349,10 +379,13 @@ extension HomeViewController {
         }
         groupedLocations = [cumulativeLibrarySecond, cumulativeLibraryFirst, cumulativeLibraryTwentyFour, cumulativeLibraryZero, cumulativeLibraryMinus, cumulativeNeroSC, cumulativeStudentCenter, cumulativeYemekhane, cumulativeGym, cumulativeNeroCAS, cumulativeIce]
         groupedAps = [librarySecondAPs, libraryTwentyfourAPs, gymAPs, iceAPs, yemekhaneAPs, libraryZeroAPs, libraryFirstAPs, libraryMinusAPs, studentCenterAPs, neroSCAPs, neroCASAPs]
+        let libraryFloors = [cumulativeLibrarySecond, cumulativeLibraryFirst, cumulativeLibraryTwentyFour, cumulativeLibraryZero, cumulativeLibraryMinus]
+        findBestPlaceToStudy(libraryFloors)
     }
 }
 
 extension HomeViewController: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             var distance:CLLocationDistance = Double.infinity
@@ -386,7 +419,7 @@ extension HomeViewController: CLLocationManagerDelegate {
                     case .error: closestLocationLabel.text = "Error"
                     case .yemekhane: break
                     }
-
+                    
                     locationManager.stopUpdatingLocation()
                 }
                 
@@ -402,5 +435,17 @@ extension HomeViewController: CLLocationManagerDelegate {
         if status == .authorizedWhenInUse {
             locationManager.requestLocation()
         }
+    }
+}
+
+extension HomeViewController {
+    func findBestPlaceToStudy(_ buildings: [Buildings]){
+        var best:Buildings = cumulativeLibrarySecond
+        buildings.forEach { (building) in
+            if building.ringValue! < best.ringValue! {
+                best = building
+            }
+        }
+        bestPlaceLabel.text = "Consider studying at \(String(describing: best.locationType!.displayText))."
     }
 }

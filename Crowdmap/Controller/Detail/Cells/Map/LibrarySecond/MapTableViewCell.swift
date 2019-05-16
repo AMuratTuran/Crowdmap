@@ -41,7 +41,13 @@ class MapTableViewCell: UITableViewCell {
             pulsator.numPulse = 5
             pulsator.animationDuration = 5.0
             pulsator.start()
-            count += 1
+            if groupedAPs != nil {
+                if groupedAPs!.count < 9 {
+                    if count != 8{
+                        count += 1
+                    }
+                }
+            }
         }
     }
     
@@ -50,9 +56,9 @@ class MapTableViewCell: UITableViewCell {
             var ap = self.groupedAPs![0][count]
             
             let value = CGFloat((ap.numberOfPeople!*100) / ap.detailedLocationType!.capacity)
-            if value >= 50.0 {
+            if value >= 70.0 {
                 pulsator.backgroundColor = UIColor.locationCrowdedColor.cgColor
-            } else if value >= 35 && value < 50 {
+            } else if value >= 35 && value < 70 {
                 pulsator.backgroundColor = UIColor.locationNormalColor.cgColor
             }else {
                 pulsator.backgroundColor = UIColor.locationAvailableColor.cgColor

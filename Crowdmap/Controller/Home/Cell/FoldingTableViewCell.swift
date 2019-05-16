@@ -112,32 +112,45 @@ class FoldingTableViewCell: FoldingCell {
         
   
         ringValue = CGFloat((location.numberOfPeople! * 100) / capacity)
-        location.ringValue = ringValue
+        
        
         detailLocationLabel.text = locationLabel.text
         if locationType == .libraryfirst || locationType == .libraryzero || locationType == .libraryminus || locationType == .librarytwentyfour || locationType == .librarysecond || locationType == .neroSC {
             numberOfPeopleLabel.text = String(Int(Double(location.numberOfPeople!) * 0.7))
             seats = capacity - Int(Double(location.numberOfPeople!) * 0.7)
+            ringValue = ringValue * 0.7
         } else {
             numberOfPeopleLabel.text = String(location.numberOfPeople!)
             seats = capacity - location.numberOfPeople!
         }
+        if seats < 0 { seats = 0 }
+        location.ringValue = ringValue
         avaibleChairsLabel.text = String(seats)
         colorRing(value: ringValue)
     }
     
     private func colorRing(value: CGFloat){
-        if value >= 50.0 {
+        if value >= 90.0 {
+            numberOfPeopleIV.tintColor = UIColor.locationExtraCrowdedColor
+            chairIV.tintColor = UIColor.locationExtraCrowdedColor
+            progressRing.innerRingColor = UIColor.locationExtraCrowdedColor
+            detailProgressRing.innerRingColor = UIColor.locationExtraCrowdedColor
+        } else if value < 90 && value >= 80 {
             numberOfPeopleIV.tintColor = UIColor.locationCrowdedColor
             chairIV.tintColor = UIColor.locationCrowdedColor
             progressRing.innerRingColor = UIColor.locationCrowdedColor
             detailProgressRing.innerRingColor = UIColor.locationCrowdedColor
-        } else if value >= 35 && value < 50 {
+        } else if value >= 65 && value < 80 {
+            numberOfPeopleIV.tintColor = UIColor.locationMediumColor
+            chairIV.tintColor = UIColor.locationMediumColor
+            progressRing.innerRingColor = UIColor.locationMediumColor
+            detailProgressRing.innerRingColor = UIColor.locationMediumColor
+        } else if value >= 45 && value < 65 {
             numberOfPeopleIV.tintColor = UIColor.locationNormalColor
             chairIV.tintColor = UIColor.locationNormalColor
             progressRing.innerRingColor = UIColor.locationNormalColor
             detailProgressRing.innerRingColor = UIColor.locationNormalColor
-        }else {
+        } else {
             numberOfPeopleIV.tintColor = UIColor.locationAvailableColor
             chairIV.tintColor = UIColor.locationAvailableColor
             progressRing.innerRingColor = UIColor.locationAvailableColor

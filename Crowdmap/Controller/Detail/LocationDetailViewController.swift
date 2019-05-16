@@ -49,6 +49,9 @@ class LocationDetailViewController: BaseViewController {
         let mapTwentyNib = UINib(nibName: "LibraryTwentyFourTableViewCell", bundle: nil)
         detailTableView.register(mapTwentyNib, forCellReuseIdentifier: "LibraryTwentyFourTableViewCell")
         
+        let historyNib = UINib(nibName: "HistoryTableViewCell", bundle: nil)
+        detailTableView.register(historyNib, forCellReuseIdentifier: "HistoryTableViewCell")
+        
         detailTableView.delegate = self
         detailTableView.dataSource = self
     }
@@ -89,23 +92,22 @@ extension LocationDetailViewController: UITableViewDataSource,UITableViewDelegat
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailsTableViewCell", for: indexPath) as! DetailsTableViewCell
             cell.configureCell(location: location!)
             return cell
-//        case 1:
-//            return  tableView.dequeueReusableCell(withIdentifier: "MapTableViewCell", for: indexPath)
-//        case 2:
-//            return tableView.dequeueReusableCell(withIdentifier: "MapTableViewCell", for: indexPath)
-        default:
+        case 1:
             if location?.locationType == .librarytwentyfour {
-                 let cell = tableView.dequeueReusableCell(withIdentifier: "LibraryTwentyFourTableViewCell", for: indexPath) as! LibraryTwentyFourTableViewCell
-                cell.groupedAPs = groupedAPs
-                cell.assignPulsators()
-                return cell
-            }else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "MapTableViewCell", for: indexPath) as! MapTableViewCell
-                cell.location = self.location
-                cell.groupedAPs = groupedAPs
-                cell.assignPulsators()
-                return cell
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LibraryTwentyFourTableViewCell", for: indexPath) as! LibraryTwentyFourTableViewCell
+            cell.groupedAPs = groupedAPs
+            cell.assignPulsators()
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MapTableViewCell", for: indexPath) as! MapTableViewCell
+            cell.location = self.location
+            cell.groupedAPs = groupedAPs
+            cell.assignPulsators()
+            return cell
+        }
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
+            return cell
         }
     }
     
