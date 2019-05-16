@@ -25,6 +25,7 @@ class FoldingTableViewCell: FoldingCell {
     @IBOutlet weak var avaibleChairsLabel: UILabel!
     @IBOutlet weak var numberOfPeopleIV: UIImageView!
     @IBOutlet weak var chairIV: UIImageView!
+    @IBOutlet weak var detailExplanationLabel: UILabel!
     
     var ringValue: CGFloat = 0.0
     var capacity: Int = 1
@@ -126,35 +127,45 @@ class FoldingTableViewCell: FoldingCell {
         if seats < 0 { seats = 0 }
         location.ringValue = ringValue
         avaibleChairsLabel.text = String(seats)
-        colorRing(value: ringValue)
+        colorRing(value: ringValue, location: location)
     }
     
-    private func colorRing(value: CGFloat){
+    private func colorRing(value: CGFloat, location: Buildings){
         if value >= 90.0 {
             numberOfPeopleIV.tintColor = UIColor.locationExtraCrowdedColor
             chairIV.tintColor = UIColor.locationExtraCrowdedColor
             progressRing.innerRingColor = UIColor.locationExtraCrowdedColor
             detailProgressRing.innerRingColor = UIColor.locationExtraCrowdedColor
+            detailExplanationLabel.text = "\((location.locationType?.displayText)!) looks very crowded. Very little chance to find a seat."
         } else if value < 90 && value >= 80 {
             numberOfPeopleIV.tintColor = UIColor.locationCrowdedColor
             chairIV.tintColor = UIColor.locationCrowdedColor
             progressRing.innerRingColor = UIColor.locationCrowdedColor
             detailProgressRing.innerRingColor = UIColor.locationCrowdedColor
+            detailExplanationLabel.text = "\((location.locationType?.displayText)!) looks very crowded. Check other buildings."
         } else if value >= 65 && value < 80 {
             numberOfPeopleIV.tintColor = UIColor.locationMediumColor
             chairIV.tintColor = UIColor.locationMediumColor
             progressRing.innerRingColor = UIColor.locationMediumColor
             detailProgressRing.innerRingColor = UIColor.locationMediumColor
+            detailExplanationLabel.text = "\((location.locationType?.displayText)!) looks OK. You will find your seat in no time!"
         } else if value >= 45 && value < 65 {
             numberOfPeopleIV.tintColor = UIColor.locationNormalColor
             chairIV.tintColor = UIColor.locationNormalColor
             progressRing.innerRingColor = UIColor.locationNormalColor
             detailProgressRing.innerRingColor = UIColor.locationNormalColor
+            detailExplanationLabel.text = "\((location.locationType?.displayText)!) looks available. Good time to visit."
         } else {
             numberOfPeopleIV.tintColor = UIColor.locationAvailableColor
             chairIV.tintColor = UIColor.locationAvailableColor
             progressRing.innerRingColor = UIColor.locationAvailableColor
             detailProgressRing.innerRingColor = UIColor.locationAvailableColor
+            if location.locationType != nil {
+                detailExplanationLabel.text = "\((location.locationType?.displayText)!) looks empty. Enjoy your time there!"
+            }else{
+                avaibleChairsLabel.text = "0"
+                detailExplanationLabel.text = "Sorry, this building's Wi-Fi is inactive."
+            }
         }
     }
 }

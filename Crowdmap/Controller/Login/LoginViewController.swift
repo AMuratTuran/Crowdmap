@@ -34,6 +34,7 @@ class LoginViewController: BaseViewController , UITextFieldDelegate, GIDSignInUI
             if error == nil{
                 if (Auth.auth().currentUser?.isEmailVerified)! {
                     User.user.isVerified = true
+                    
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let nextVC = storyBoard.instantiateViewController(withIdentifier: "TabBarController") as! RAMAnimatedTabBarController
                     self.present(nextVC, animated: true, completion: nil)

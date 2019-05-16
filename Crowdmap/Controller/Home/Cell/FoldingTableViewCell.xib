@@ -248,6 +248,7 @@
                 <outlet property="chairIV" destination="PCD-nq-eTT" id="zyz-WH-5ro"/>
                 <outlet property="containerView" destination="10j-wq-Lfy" id="kIQ-V3-BXx"/>
                 <outlet property="containerViewTop" destination="UfT-PC-9E8" id="BED-ez-888"/>
+                <outlet property="detailExplanationLabel" destination="Z1p-fa-AZU" id="m43-Ao-Vta"/>
                 <outlet property="detailLocationLabel" destination="lEC-zo-MC9" id="4cZ-id-V4S"/>
                 <outlet property="detailProgressRing" destination="9Zv-tK-1dC" id="LSq-ej-DI8"/>
                 <outlet property="detailsButton" destination="YYt-e5-jce" id="wYs-ki-4hi"/>
