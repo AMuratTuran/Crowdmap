@@ -9,6 +9,7 @@
 import UIKit
 import ChameleonFramework
 import UICircularProgressRing
+import Firebase
 
 class DetailsTableViewCell: UITableViewCell {
     
@@ -21,7 +22,11 @@ class DetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var numberOfPeopleIV: UIImageView!
     @IBOutlet weak var chairIV: UIImageView!
     @IBOutlet weak var watchIV: UIImageView!
+    var building:Buildings?
+    let databaseManager = DatabaseManager()
+    var db : Firestore!
     
+    @IBOutlet weak var favButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +34,7 @@ class DetailsTableViewCell: UITableViewCell {
         numberOfPeopleIV.image = numberOfPeopleIV.image?.withRenderingMode(.alwaysTemplate)
         chairIV.image = chairIV.image?.withRenderingMode(.alwaysTemplate)
         watchIV.image = watchIV.image?.withRenderingMode(.alwaysTemplate)
+        db = Firestore.firestore()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -36,9 +42,17 @@ class DetailsTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    @IBAction func addToFavorites(_ sender: Any) {
+      //  databaseManager.uploadFavPlaces(places: <#T##[String]#>)
+        if !User.user.favPlaces.contains(building!.locationType!.displayText){
+            User.user.favPlaces.append(building!.locationType!.displayText)
+            databaseManager.uploadFavPlaces(places: User.user.favPlaces)
+        }
+    }
+    
     
     func configureCell(location: Buildings){
-        
+        self.building = location
         let crowdedness = Double(location.ringValue!)
         let locationType = location.locationType
         var seats = 0

@@ -25,7 +25,8 @@ class DatabaseManager {
         db.collection("users").document(email).setData([
             "first": name,
             "last": lastName,
-            "email": email
+            "email": email,
+            "favPlaces": []
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

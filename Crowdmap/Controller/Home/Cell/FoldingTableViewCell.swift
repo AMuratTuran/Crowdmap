@@ -26,6 +26,7 @@ class FoldingTableViewCell: FoldingCell {
     @IBOutlet weak var numberOfPeopleIV: UIImageView!
     @IBOutlet weak var chairIV: UIImageView!
     @IBOutlet weak var detailExplanationLabel: UILabel!
+    var allLocs:[Buildings]?
     
     var ringValue: CGFloat = 0.0
     var capacity: Int = 1
@@ -59,6 +60,7 @@ class FoldingTableViewCell: FoldingCell {
         let count: Int = location.numberOfPeople!
         var locationType: LocationType?
         progressRing.isHidden = false
+        detailsButton.isHidden = false
         switch location.locationName {
         case LocationType.libraryminus.text:
             locationType = LocationType.libraryminus
@@ -106,6 +108,7 @@ class FoldingTableViewCell: FoldingCell {
             locationLabel.text = LocationType.gym.displayText
         default:
             progressRing.isHidden = true
+            detailsButton.isHidden = true
             locationLabel.text = "Location info not available."
         }
         

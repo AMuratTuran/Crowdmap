@@ -21,11 +21,17 @@ class ProfileViewController: BaseViewController {
 
     @IBOutlet weak var profilePictureView: UIImageView!
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var favoritesView: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         db = Firestore.firestore()
         configureProfilePage()
         email = Auth.auth().currentUser?.email
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         getUserInfo()
     }
     
@@ -36,7 +42,9 @@ class ProfileViewController: BaseViewController {
         profilePictureView.layer.borderColor = UIColor.white.cgColor
         profilePictureView.layer.borderWidth = 5.0
         profilePictureView.image = UIImage(named: "pp")
-    }
+        nameLabel.text = "\(User.user.name!) \(User.user.lastName!)"
+        
+     }
     
     func getUserInfo(){
 //        db.collection("users").whereField("email", isEqualTo: email).addSnapshotListener{ snapshot, error in
@@ -49,40 +57,52 @@ class ProfileViewController: BaseViewController {
 //                print("====== \(value) ======")
 //            }
 //        }
+//
+//        let docRef = db.collection("users").document(email!)
+//
+//        docRef.getDocument { (document, error) in
+//            if let user = document.flatMap({
+//                $0.data().flatMap({ (data) -> User in
+//                    guard let last = data["last"] as? String else { return User.user }
+//                    User.user.lastName = last
+//                    User.user.name = data["first"] as? String
+//                    User.user.email = data["email"] as? String
+//                    return User.user
+//                })
+//            }) {
+//                print("User: \(user)")
+//            } else {
+//                print("Document does not exist")
+//            }
+//        }
         
-        let docRef = db.collection("users").document(email!)
-        
-        docRef.getDocument { (document, error) in
-            if let user = document.flatMap({
-                $0.data().flatMap({ (data) -> User in
-                    guard let last = data["last"] as? String else { return User.user }
-                    User.user.lastName = last
-                    User.user.name = data["first"] as? String
-                    User.user.email = data["email"] as? String
-                    print("===== \(User.user.email) =============")
-                    return User.user
-                })
-            }) {
-                print("User: \(user)")
-            } else {
-                print("Document does not exist")
+        let favs = User.user.favPlaces
+        var y = 0
+        favs.forEach { (locationName) in
+            let building = getBuilding(locationName)
+            let locationType = building?.locationType!
+            var ringValue = CGFloat(((building?.numberOfPeople!)! * 100) / (building?.locationType!.capacity)!)
+            if  locationType == .libraryfirst || locationType == .libraryzero || locationType == .libraryminus || locationType == .librarytwentyfour || locationType == .librarysecond || locationType == .neroSC {
+                ringValue = ringValue * 0.7
             }
+            let label = UILabel(frame: CGRect(x: 15, y: y, width: 360, height: 21))
+            label.textAlignment = .left
+            label.text = "\(locationName) - Crowdedness: \(Int(ringValue))%"
+            label.textColor = UIColor.white
+            favoritesView.addSubview(label)
+            y += 21
         }
+
     }
 
 }
-struct City {
-    
-    let last: String
-    let first: String?
-    let email: String?
-    
-    init?(dictionary: [String: Any]) {
-        guard let last = dictionary["last"] as? String else { return nil }
-        self.last = last
-        
-        self.first = dictionary["first"] as? String
-        self.email = dictionary["email"] as? String
+
+func getBuilding(_ name: String) -> Buildings? {
+    var returnValue:Buildings?
+    HomeViewController.globalBuildings.forEach { (globalBuilding) in
+        if globalBuilding.locationType?.displayText == name {
+            returnValue = globalBuilding
+        }
     }
-    
+    return returnValue
 }

@@ -11,6 +11,7 @@
 		A631A02793C4BAE92C035C6C /* Pods_Crowdmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B6FB61D59A05933EC1381B /* Pods_Crowdmap.framework */; };
 		C328B8B1C4DA18BFFE30290B /* Pods_CrowdmapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39603923D2C777D9F8C8FEB4 /* Pods_CrowdmapTests.framework */; };
 		F116C9B2224230A40007AA91 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F116C9B1224230A40007AA91 /* DateExtensions.swift */; };
+		F12B316E2292C6A300CEB917 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B316D2292C6A300CEB917 /* ExampleTests.swift */; };
 		F142A116224BA47300E63215 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F142A114224BA47300E63215 /* HistoryTableViewCell.swift */; };
 		F142A117224BA47300E63215 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F142A115224BA47300E63215 /* HistoryTableViewCell.xib */; };
 		F145285D22620592006E9C6F /* LocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145285C22620592006E9C6F /* LocationStorage.swift */; };
@@ -102,6 +103,7 @@
 		C5351FCF3BC7415CABEC3422 /* Pods-CrowdmapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrowdmapTests.debug.xcconfig"; path = "Target Support Files/Pods-CrowdmapTests/Pods-CrowdmapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D7B6FB61D59A05933EC1381B /* Pods_Crowdmap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crowdmap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F116C9B1224230A40007AA91 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		F12B316D2292C6A300CEB917 /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		F142A114224BA47300E63215 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		F142A115224BA47300E63215 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		F145285C22620592006E9C6F /* LocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStorage.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 			children = (
 				F1925CDD222EBEBF00150957 /* CrowdmapTests.swift */,
 				F1925CDF222EBEBF00150957 /* Info.plist */,
+				F12B316D2292C6A300CEB917 /* ExampleTests.swift */,
 			);
 			path = CrowdmapTests;
 			sourceTree = "<group>";
@@ -980,6 +983,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F12B316E2292C6A300CEB917 /* ExampleTests.swift in Sources */,
 				F1925CDE222EBEBF00150957 /* CrowdmapTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1150,13 +1154,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B6JQDJV3KJ;
+				DEVELOPMENT_TEAM = 35FF9CLQ8T;
 				INFOPLIST_FILE = Crowdmap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.murat.Crowdmap2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.murat.Crowdmap1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -1171,13 +1176,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B6JQDJV3KJ;
+				DEVELOPMENT_TEAM = 35FF9CLQ8T;
 				INFOPLIST_FILE = Crowdmap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.murat.Crowdmap2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.murat.Crowdmap1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

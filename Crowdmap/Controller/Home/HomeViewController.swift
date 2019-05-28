@@ -56,6 +56,7 @@ class HomeViewController: BaseViewController {
     let refreshControl = UIRefreshControl()
     let locationManager = CLLocationManager()
     var groupedAps: [[Buildings]] = []
+    static var globalBuildings:[Buildings] = []
     
     @IBOutlet weak var foldingTableView: UITableView!
     @IBOutlet weak var topView: UIView!
@@ -379,6 +380,7 @@ extension HomeViewController {
             }
         }
         groupedLocations = [cumulativeLibrarySecond, cumulativeLibraryFirst, cumulativeLibraryTwentyFour, cumulativeLibraryZero, cumulativeLibraryMinus, cumulativeNeroSC, cumulativeStudentCenter, cumulativeYemekhane, cumulativeGym, cumulativeNeroCAS, cumulativeIce]
+        HomeViewController.globalBuildings = groupedLocations
         groupedAps = [librarySecondAPs, libraryTwentyfourAPs, gymAPs, iceAPs, yemekhaneAPs, libraryZeroAPs, libraryFirstAPs, libraryMinusAPs, studentCenterAPs, neroSCAPs, neroCASAPs]
         let libraryFloors = [cumulativeLibrarySecond, cumulativeLibraryFirst, cumulativeLibraryTwentyFour, cumulativeLibraryZero, cumulativeLibraryMinus]
         findBestPlaceToStudy(libraryFloors)
